@@ -1,17 +1,16 @@
-html
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neo1777 - Portfolio & Web Apps</title>
-    <meta name="description" content="Portfolio dei progetti open source e delle web app sviluppate da Neo1777.">
+    <meta name="description" content="Portfolio dei progetti open source, web app e articoli di Neo1777.">
     <style>
         :root {
             --bg-color: #0d1117;
             --card-bg: #161b22;
             --text-color: #c9d1d9;
-            --accent-color: #8a2be2; /* Un viola per richiamare il tuo avatar */
+            --accent-color: #8a2be2;
             --link-hover: #ab79e8;
         }
         body {
@@ -28,7 +27,7 @@ html
         }
         header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             padding-bottom: 2rem;
             border-bottom: 1px solid #30363d;
         }
@@ -39,6 +38,15 @@ html
         .bio {
             font-size: 1.1rem;
             color: #8b949e;
+        }
+        .section-title {
+            color: #fff;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #30363d;
+            padding-bottom: 0.5rem;
+            display: inline-block;
         }
         .grid {
             display: grid;
@@ -51,6 +59,8 @@ html
             border-radius: 8px;
             padding: 1.5rem;
             transition: transform 0.2s, border-color 0.2s;
+            display: flex;
+            flex-direction: column;
         }
         .card:hover {
             transform: translateY(-3px);
@@ -65,10 +75,12 @@ html
             color: #8b949e;
             font-size: 0.95rem;
             margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
         .links {
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap;
         }
         .btn {
             text-decoration: none;
@@ -77,6 +89,7 @@ html
             font-size: 0.9rem;
             font-weight: 600;
             transition: all 0.2s;
+            text-align: center;
         }
         .btn-primary {
             background-color: #238636;
@@ -94,6 +107,15 @@ html
         .btn-outline:hover {
             border-color: #8b949e;
             color: #fff;
+        }
+        /* Stile speciale per il bottone Medium */
+        .btn-medium {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #fff;
+        }
+        .btn-medium:hover {
+            background-color: #e2e2e2;
         }
         footer {
             margin-top: 4rem;
@@ -119,9 +141,10 @@ html
         </header>
 
         <main>
+            <!-- SEZIONE APP -->
+            <h2 class="section-title">Le mie Web App</h2>
             <div class="grid">
                 
-                <!-- App 1: SuperLiveMax -->
                 <div class="card">
                     <h2>SuperLiveMax Manual Viewer</h2>
                     <p>Un visualizzatore manuale per sistemi SuperLiveMax, progettato per una facile consultazione.</p>
@@ -131,7 +154,6 @@ html
                     </div>
                 </div>
 
-                <!-- App 2: MailMerge1777 -->
                 <div class="card">
                     <h2>MailMerge1777</h2>
                     <p>Web app per l'unione stampa (Mail Merge) rapida ed efficace direttamente dal browser.</p>
@@ -141,7 +163,6 @@ html
                     </div>
                 </div>
 
-                <!-- App 3: Acroform1777 -->
                 <div class="card">
                     <h2>Acroform1777</h2>
                     <p>Strumento per la gestione e manipolazione di moduli PDF (AcroForms) online.</p>
@@ -151,11 +172,40 @@ html
                     </div>
                 </div>
 
+                <!-- COPIA E INCOLLA IL BLOCCO QUI SOTTO PER AGGIUNGERE ALTRE APP -->
+                <!--
+                <div class="card">
+                    <h2>NOME DELLA TUA NUOVA APP</h2>
+                    <p>Breve descrizione di cosa fa questa app.</p>
+                    <div class="links">
+                        <a href="URL_DELLA_PAGINA_APP" class="btn btn-primary">Apri App</a>
+                        <a href="URL_DEL_REPO_GITHUB" class="btn btn-outline">Codice GitHub</a>
+                    </div>
+                </div>
+                -->
+
+            </div>
+
+            <!-- SEZIONE ARTICOLI -->
+            <h2 class="section-title">Articoli e Pubblicazioni</h2>
+            <div class="grid">
+
+                <div class="card">
+                    <h2>I spent $60 on Perplexity Pro...</h2>
+                    <p>The output would have cost me $15,000 from consultants. Una riflessione pratica sull'uso dell'AI avanzata.</p>
+                    <div class="links">
+                        <!-- target="_blank" fa aprire il link in una nuova finestra -->
+                        <a href="https://medium.com/@neo1777/i-spent-60-on-perplexity-pro-the-output-would-have-cost-me-15-000-from-consultants-d86f95dcd3c9" target="_blank" class="btn btn-medium">Leggi su Medium</a>
+                    </div>
+                </div>
+
+                <!-- Puoi aggiungere altri articoli copiando il blocco sopra -->
+
             </div>
         </main>
 
         <footer>
-            <p>Visita il mio <a href="https://github.com/neo1777" target="_blank">Profilo GitHub</a> per altri progetti e per il codice sorgente completo.</p>
+            <p>Visita il mio <a href="https://github.com/neo1777" target="_blank">Profilo GitHub</a> per il codice sorgente completo di tutti i progetti.</p>
         </footer>
     </div>
 
