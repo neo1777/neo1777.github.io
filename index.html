@@ -1,0 +1,163 @@
+html
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo1777 - Portfolio & Web Apps</title>
+    <meta name="description" content="Portfolio dei progetti open source e delle web app sviluppate da Neo1777.">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #c9d1d9;
+            --accent-color: #8a2be2; /* Un viola per richiamare il tuo avatar */
+            --link-hover: #ab79e8;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #30363d;
+        }
+        h1 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .bio {
+            font-size: 1.1rem;
+            color: #8b949e;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #fff;
+            font-size: 1.25rem;
+        }
+        .card p {
+            color: #8b949e;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        .links {
+            display: flex;
+            gap: 1rem;
+        }
+        .btn {
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background-color: #238636;
+            color: #fff;
+            border: 1px solid rgba(240, 246, 252, 0.1);
+        }
+        .btn-primary:hover {
+            background-color: #2ea043;
+        }
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid #30363d;
+        }
+        .btn-outline:hover {
+            border-color: #8b949e;
+            color: #fff;
+        }
+        footer {
+            margin-top: 4rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #8b949e;
+        }
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: var(--link-hover);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Neo1777</h1>
+            <div class="bio">#IAmDecentralized | Sviluppatore & Open Source Contributor</div>
+        </header>
+
+        <main>
+            <div class="grid">
+                
+                <!-- App 1: SuperLiveMax -->
+                <div class="card">
+                    <h2>SuperLiveMax Manual Viewer</h2>
+                    <p>Un visualizzatore manuale per sistemi SuperLiveMax, progettato per una facile consultazione.</p>
+                    <div class="links">
+                        <a href="https://neo1777.github.io/superlivemax-manual-viewer/" class="btn btn-primary">Apri App</a>
+                        <a href="https://github.com/neo1777/superlivemax-manual-viewer" class="btn btn-outline">Codice GitHub</a>
+                    </div>
+                </div>
+
+                <!-- App 2: MailMerge1777 -->
+                <div class="card">
+                    <h2>MailMerge1777</h2>
+                    <p>Web app per l'unione stampa (Mail Merge) rapida ed efficace direttamente dal browser.</p>
+                    <div class="links">
+                        <a href="https://neo1777.github.io/mailmerge1777/" class="btn btn-primary">Apri App</a>
+                        <a href="https://github.com/neo1777/mailmerge1777" class="btn btn-outline">Codice GitHub</a>
+                    </div>
+                </div>
+
+                <!-- App 3: Acroform1777 -->
+                <div class="card">
+                    <h2>Acroform1777</h2>
+                    <p>Strumento per la gestione e manipolazione di moduli PDF (AcroForms) online.</p>
+                    <div class="links">
+                        <a href="https://neo1777.github.io/acroform1777/" class="btn btn-primary">Apri App</a>
+                        <a href="https://github.com/neo1777/acroform1777" class="btn btn-outline">Codice GitHub</a>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <footer>
+            <p>Visita il mio <a href="https://github.com/neo1777" target="_blank">Profilo GitHub</a> per altri progetti e per il codice sorgente completo.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
