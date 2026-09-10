@@ -56,18 +56,43 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;back
 .limits b{color:var(--ink)}
 footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-size:12.5px;color:var(--soft)}
 @media (max-width:620px){dl.grid{grid-template-columns:1fr;gap:2px}dl.grid dd{margin-bottom:12px}}
+@page{size:A4;margin:14mm 15mm 13mm 15mm}
 @media print{
-  :root{--bg:#fff;--panel:#fff;--ink:#000;--mid:#222;--soft:#555;--line:#bbb;--acc:#000}
+  :root{--bg:#fff;--panel:#fff;--ink:#000;--mid:#1a1a1a;--soft:#474747;--line:#bbb;--acc:#000}
   .bar,.tabs,.noprint,#stale{display:none!important}
-  body{font-size:10.5pt;background:#fff;color:#000}
+  /* Corpo a 9,5pt e interlinea 1,36: misurato in pagina, non scelto a occhio.
+     Il profilo Sistemista sta in due pagine piene (1,92), l'AI arriva a 2,34 perche
+     porta una carta di progetto in piu. Scendere a 9pt guadagnava 0,24 di pagina e
+     non cambiava il numero di fogli: non valeva il carattere piu piccolo. */
+  body{font-size:9.5pt;line-height:1.36;background:#fff;color:#000}
   .wrap{max-width:none;padding:0}
-  .panel{display:block!important}
-  .panel[hidden]{display:block!important}
-  .pagebreak{page-break-before:always}
-  .card{background:none;border:1px solid #ccc;page-break-inside:avoid}
-  .job,.limits{page-break-inside:avoid}
+  /* Si stampa SOLO il profilo selezionato. Un PDF che contiene due profili diversi
+     non e un CV: e un dossier, e chi lo riceve non sa per quale ruolo lo stai mandando. */
+  .panel[hidden]{display:none!important}
+  header{border-bottom:1.5pt solid #000;padding-bottom:9pt}
+  h1{font-size:21pt;margin-bottom:2pt}
+  .role{font-size:11pt;margin-bottom:6pt}
+  .contact{font-size:9pt}
+  .stamp{margin-top:6pt;font-size:8.5pt}
+  h2{margin:12pt 0 5pt;font-size:9.5pt}
+  .lede{font-size:9.5pt}
+  dl.grid{grid-template-columns:148px 1fr;gap:3pt 14pt}
+  dl.grid dt,dl.grid dd{break-inside:avoid;font-size:9pt}
+  dl.grid dd{margin-bottom:4pt}
+  /* Riquadri sostituiti da una barra a sinistra: su carta i bordi chiusi sprecano
+     spazio e spezzano male, una barra tiene il raggruppamento e costa niente. */
+  .card{background:none;border:0;border-left:2pt solid #c4c4c4;border-radius:0;padding:0 0 0 11pt;margin-bottom:9pt;break-inside:auto}
+  .card h3{break-after:avoid;font-size:10.5pt}
+  .card p{font-size:9pt;margin-bottom:4pt}
+  .job{margin-bottom:7pt;break-inside:avoid}
+  .job p{font-size:9pt}
+  .limits p{break-inside:avoid;font-size:9pt}
+  footer{margin-top:14pt;padding-top:8pt;font-size:8.5pt}
   a{color:#000;text-decoration:none}
-  a[href^="http"]::after{content:" (" attr(href) ")";font-size:8.5pt;color:#555}
+  /* L'indirizzo si stampa solo dove il testo del link non lo mostra gia, altrimenti
+     su carta si legge "github.com/neo1777 (https://github.com/neo1777)". Chi mette
+     l'attributo e chi lo toglie e il gestore di beforeprint / afterprint. */
+  a[data-print-url]::after{content:" " attr(data-print-url);font-size:7.5pt;color:#474747;word-break:break-all}
 }
 </style>
 </head>
@@ -119,7 +144,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
   <h2>Progetti e contributi, con le prove</h2>
 
   <div class="card">
-    <h3>graphify — contributo open source su un repository da <span class="stars">oltre 110.000</span> stelle</h3>
+    <h3>graphify — contributo open source su un repository da <span class="stars">oltre 116.000</span> stelle</h3>
     <p>Alla mia prima issue su GitHub ho documentato perché il clustering aggrega comunità incoerenti in presenza di nodi super-hub: dati misurati sul grafo, causa tracciata a due nodi specifici, e il perché la mitigazione già presente nel loro codice non copriva il caso. Leggendo il sorgente ho trovato anche un bug di arrotondamento che impediva a una soglia di scattare. <b>Aperta alle 19:10, chiusa alle 22:14 dello stesso giorno</b>, e nella versione successiva sono arrivati il fix e due dei tre flag che avevo proposto. Ho poi caratterizzato il nuovo flag su più valori di percentile e raccomandato un default.</p>
     <p>Su una seconda issue ho documentato un crash con reproducer e causa a livello di riga. Il maintainer ha risposto <i>«Great catch and a correct fix»</i> e ha implementato la correzione direttamente, con due migliorie rispetto alla mia patch: la diagnosi era mia, il codice finale è loro.</p>
     <p><b>Il riscontro che conta più di tutto, e non viene da me:</b> due mesi dopo un altro utente ha aperto una issue citando la mia <code>#919</code> come origine del flag <code>--exclude-hubs</code>, scrivendo che <i>«works great»</i> e che migliora sensibilmente l'allineamento delle comunità sul proprio grafo da 2.091 nodi.</p>
@@ -136,7 +161,12 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
 
   <div class="card">
     <h3>App e strumenti</h3>
-    <p id="apps-live"><b>Apribile ora:</b> <a href="https://neo1777.github.io/marzio1777/">marzio1777</a>, Progressive Web App in React, TypeScript e Firebase con ruoli e permessi, architettura su circa 1.500 nodi.<br><b>Codice pubblico, da clonare ed eseguire:</b> <a href="https://github.com/neo1777/acroform1777">acroform1777</a>, editor di moduli PDF AcroForm con guida utente e guida sviluppatore; <a href="https://github.com/neo1777/mailmerge1777">mailmerge1777</a>, stampa unione con compilazione PDF da Excel e CSV e invio email massivo, che avendo un componente server si esegue in locale.</p>
+    <!-- Testo di riserva, valido anche a JavaScript spento: nomi e link, nessuna
+         affermazione su chi sia apribile e chi no. La riga completa, con le descrizioni
+         e la distinzione fra online e da eseguire, la compone lo script dall'elenco
+         PROGETTI: quello e l'unico posto dove quelle frasi esistono, cosi non possono
+         divergere da quello che il controllo trova davvero. -->
+    <p id="apps-live">Tre progetti pubblici: <a href="https://github.com/neo1777/marzio1777">marzio1777</a>, <a href="https://github.com/neo1777/acroform1777">acroform1777</a>, <a href="https://github.com/neo1777/mailmerge1777">mailmerge1777</a>. La riga completa, con la descrizione di ciascuno e con la distinzione fra apribili online e da eseguire in locale, viene composta all'apertura della pagina dopo aver chiamato i tre indirizzi.</p>
     <p class="ev" id="apps-nota">Questo elenco <b>si verifica da sé quando aprite la pagina</b>: per ogni progetto viene chiamato il suo indirizzo, e finisce fra gli «apribili ora» solo se risponde davvero. Gli altri restano fra il codice pubblico. Non mi fido del fatto che una pagina sia dichiarata attiva: la chiamo e guardo cosa risponde. Vetrina completa: <a href="https://neo1777.github.io/">neo1777.github.io</a></p>
   </div>
 
@@ -148,7 +178,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
 </section>
 
 <!-- ================= SYS ================= -->
-<section class="panel pagebreak" id="p-sys" data-title="Sistemista e Infrastruttura" hidden>
+<section class="panel" id="p-sys" data-title="Sistemista e Infrastruttura" hidden>
   <h2>Profilo</h2>
   <p class="lede">Oltre vent'anni fra sistemistica, reti e sicurezza. Oggi assistenza tecnica specialistica da remoto su sistemi di videosorveglianza IP, antintrusione e sicurezza integrata, a livello di casa madre. In parallelo amministro un'infrastruttura self-hosted in produzione, con Linux, Docker, CI/CD, backup cifrati e aggiornamenti firmati con rollback automatico, che uso ogni giorno come strumento di lavoro. Il mio metodo è la diagnosi: capire la causa, non aggirare il sintomo.</p>
 
@@ -173,7 +203,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
   </div>
 
   <div class="card">
-    <h3>graphify — contributo open source su un repository da <span class="stars">oltre 110.000</span> stelle</h3>
+    <h3>graphify — contributo open source su un repository da <span class="stars">oltre 116.000</span> stelle</h3>
     <p>Alla mia prima issue ho documentato un difetto di clustering con dati misurati e causa tracciata, e leggendo il sorgente ho trovato un bug latente. <b>Chiusa in tre ore:</b> nella versione successiva sono arrivati il fix e due opzioni che avevo proposto. Su una seconda issue il maintainer ha definito la mia patch <i>«a correct fix»</i> e ha implementato la correzione direttamente, con due migliorie rispetto alla mia. Due mesi dopo un altro utente ha aperto una issue citando la <code>#919</code> come origine del flag <code>--exclude-hubs</code>, scrivendo che <i>«works great»</i> sul proprio grafo da 2.091 nodi.</p>
     <p class="ev">Prove: <a href="https://github.com/Graphify-Labs/graphify/issues/919">#919</a> · <a href="https://github.com/Graphify-Labs/graphify/issues/934">#934</a> · <a href="https://github.com/Graphify-Labs/graphify/pull/942">PR #942</a> · <a href="https://github.com/Graphify-Labs/graphify/issues/1800">#1800, di un terzo</a></p>
   </div>
@@ -182,7 +212,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
 <!-- ================= comune ================= -->
 <section id="p-common">
   <h2>Esperienza professionale</h2>
-  <div class="job"><div class="job-h"><div class="job-t">Addetto Assistenza Tecnica e Help Desk — S.&amp; A. S.r.l. (Gallarate, VA)</div><div class="job-d">Ott 2024 – oggi</div></div>
+  <div class="job"><div class="job-h"><div class="job-t">Addetto Assistenza Tecnica e Help Desk — S&amp;A S.r.l. (Gallarate, VA)</div><div class="job-d">Ott 2024 – oggi</div></div>
   <p>Assistenza tecnica da remoto su videosorveglianza IP, antintrusione e sicurezza integrata, a supporto di installatori, rivenditori e clienti finali: diagnosi collegandomi ai sistemi del cliente, configurazione, verifica di rete. Oltre 1.400 ticket risolti con soddisfazione clienti del 99,8% nel 2025. Inquadramento 3° livello CCNL Commercio e Terziario da gennaio 2026.</p></div>
 
   <div class="job"><div class="job-h"><div class="job-t">Tecnico Sistemista — Synergytechnology</div><div class="job-d">Feb 2024 – Ott 2024</div></div>
@@ -214,7 +244,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
 
 <footer>
   Autorizzo il trattamento dei dati personali ai sensi del Reg. UE 2016/679 e del D.Lgs. 196/2003.
-  <span class="noprint"> · La stampa produce entrambi i profili su pagine separate, in bianco e nero e a colonna singola, leggibile dai sistemi ATS.</span>
+  <span class="noprint"> · La stampa e l'export in Markdown producono <b>il solo profilo selezionato qui sopra</b>, in bianco e nero e a colonna singola, con gli indirizzi delle prove scritti per esteso: leggibile da una persona e da un sistema ATS.</span>
 </footer>
 
 </div>
@@ -224,7 +254,14 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
   "use strict";
   var UPDATED = "2026-09-10";      // <<< unica data da cambiare quando aggiorni il CV
   var SOGLIA_GIORNI = 60;          // oltre questa soglia la pagina dichiara di essere vecchia
-  var STARS_FALLBACK = "oltre 110.000";
+  var TITOLO_BASE = document.title;
+  var SEP = '§§';        // marcatore interno: sopravvive al collasso degli spazi
+
+  // Un solo posto decide come si chiamano i file, cosi il PDF e il .md dello stesso
+  // profilo hanno lo stesso nome e due profili diversi non finiscono in "CV(2).pdf".
+  function nomeFile(){
+    return 'CV_Nicola_Pigozzo_' + (attivo === 'ai' ? 'AI_Agentic' : 'Sistemista') + '_' + UPDATED;
+  }
 
   // ---- tema: default scuro, scelta ricordata quando il browser lo permette ----
   var root = document.documentElement, bt = document.getElementById('bt-theme');
@@ -254,7 +291,8 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
   }
 
   // ---- il numero che invecchia più in fretta, letto dalla fonte ----
-  // Se la rete non è disponibile resta il valore statico: nessun buco, nessuna bugia.
+  // Se la rete non è disponibile resta il valore scritto nel documento
+  // («oltre 116.000»): nessun buco, nessuna bugia, solo una stima per difetto.
   (function(){
     var nodes = document.querySelectorAll('.stars');
     if (!nodes.length || typeof fetch !== 'function') return;
@@ -263,12 +301,19 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
       .then(function(j){
         if (!j || typeof j.stargazers_count !== 'number') return;
         var n = j.stargazers_count.toLocaleString('it-IT');
+        // Sullo schermo il numero esatto, perche e appena stato letto e si puo
+        // controllare. Su carta e nel Markdown la forma arrotondata: quei file
+        // vengono letti giorni dopo, e una cifra al singolo digito che nel frattempo
+        // e cambiata sembra precisione finta. Regola scritta in STATO.md.
+        var arrotondato = 'oltre ' + (Math.floor(j.stargazers_count/1000)*1000).toLocaleString('it-IT');
         for (var i=0;i<nodes.length;i++){
           nodes[i].textContent = n;
+          nodes[i].dataset.live = n;
+          nodes[i].dataset.md = arrotondato;
           nodes[i].title = 'Letto da api.github.com al caricamento di questa pagina';
         }
       })
-      .catch(function(){ /* resta STARS_FALLBACK, che è già nel documento */ });
+      .catch(function(){ /* resta «oltre 116.000», che è già scritto nel documento */ });
   })();
 
   // ---- gli strumenti, verificati chiamandoli ----
@@ -295,8 +340,16 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
         .catch(function(){ return null; });   // null = non verificabile, non "morto"
     }
 
+    var nota = document.getElementById('apps-nota');
+
     Promise.all(PROGETTI.map(function(p){ return vivo(p.n); })).then(function(esiti){
-      if (esiti.every(function(e){ return e === null; })) return;  // nessuna verifica possibile: resta il testo statico
+      // Nessuna delle tre chiamate e riuscita: la riga di riserva promette un controllo
+      // che non c'e stato, quindi lo si dice invece di lasciarla mentire.
+      if (esiti.every(function(e){ return e === null; })) {
+        if (nota) nota.innerHTML = '<b>Controllo non riuscito ora:</b> le chiamate ai tre indirizzi non hanno risposto, ' +
+          'quindi qui sotto non c\'e nessuna distinzione fra apribili e da eseguire. ' + nota.innerHTML;
+        return;
+      }
 
       var aperti = [], soloCodice = [];
       PROGETTI.forEach(function(p, i){
@@ -311,7 +364,6 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
       if (soloCodice.length) html += (html ? '<br>' : '') + '<b>Codice pubblico, da clonare ed eseguire:</b> ' + soloCodice.join('; ') + '.';
       box.innerHTML = html;
 
-      var nota = document.getElementById('apps-nota');
       if (nota) nota.innerHTML = '<b>Verificato al ' + new Date().toLocaleDateString('it-IT') + ':</b> ' +
         aperti.length + ' su ' + PROGETTI.length + ' rispondono. ' + nota.innerHTML;
     });
@@ -335,7 +387,37 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
   show('ai');
 
   // ---- export Markdown del profilo attivo, generato dal DOM per non poter divergere ----
-  function txt(el){ return (el.textContent || '').replace(/\s+/g,' ').trim(); }
+  // Si legge una copia del nodo, non il nodo: cosi si possono fare due sostituzioni
+  // che servono solo all'export senza toccare la pagina.
+  //  1. <br> diventa un separatore vero. Senza questo passaggio textContent
+  //     incollava le due frasi: "...1.500 nodi.Codice pubblico, da clonare...".
+  //  2. il conteggio delle stelle passa alla forma arrotondata (vedi sopra).
+  function txt(el){
+    if (!el || !el.cloneNode) return '';
+    var c = el.cloneNode(true);
+    var br = c.querySelectorAll ? c.querySelectorAll('br') : [];
+    for (var i=0;i<br.length;i++){ br[i].parentNode.replaceChild(document.createTextNode(' ' + SEP + ' '), br[i]); }
+    var st = c.querySelectorAll ? c.querySelectorAll('.stars') : [];
+    for (var k=0;k<st.length;k++){ if (st[k].dataset && st[k].dataset.md) st[k].textContent = st[k].dataset.md; }
+    return (c.textContent || '').replace(/\s+/g,' ').trim();
+  }
+  // Un testo che contiene il marcatore diventa piu paragrafi, non una riga incollata.
+  function spingi(out, s){
+    s.split(SEP).forEach(function(p){ p = p.trim(); if (p) out.push(p, ''); });
+  }
+  // I link diventano Markdown dentro la frase in cui stanno, invece di essere
+  // rastrellati a parte. Prima la nota che spiega la verifica degli strumenti veniva
+  // buttata e restava solo il suo ultimo link, etichettato "Prove:".
+  function txtLink(el){
+    if (!el || !el.cloneNode) return '';
+    var c = el.cloneNode(true);
+    var a = c.querySelectorAll ? c.querySelectorAll('a') : [];
+    for (var i=a.length-1;i>=0;i--){
+      var t = (a[i].textContent || '').replace(/\s+/g,' ').trim();
+      a[i].parentNode.replaceChild(document.createTextNode('[' + t + '](' + a[i].href + ')'), a[i]);
+    }
+    return txt(c);
+  }
   function sezioneMd(sec){
     var out = [], kids = sec.children;
     for (var i=0;i<kids.length;i++){
@@ -354,19 +436,14 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
       }
       else if (el.classList.contains('card')) {
         out.push('### ' + txt(el.querySelector('h3')));
-        el.querySelectorAll('p').forEach(function(p){
-          if (p.classList.contains('ev')) {
-            var links = [].slice.call(p.querySelectorAll('a')).map(function(a){ return '[' + txt(a) + '](' + a.href + ')'; });
-            out.push('', 'Prove: ' + links.join(' · '));
-          } else out.push('', txt(p));
-        });
+        el.querySelectorAll('p').forEach(function(p){ out.push(''); spingi(out, txtLink(p)); });
         out.push('');
       }
       else if (el.classList.contains('limits')) {
         el.querySelectorAll('p').forEach(function(p){ out.push('- ' + txt(p)); });
         out.push('');
       }
-      else if (tag === 'P') { out.push(txt(el), ''); }
+      else if (tag === 'P') { spingi(out, txtLink(el)); }
     }
     return out;
   }
@@ -389,9 +466,38 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
     var blob = new Blob([righe.join('\n').replace(/\n{3,}/g,'\n\n')], {type:'text/markdown;charset=utf-8'});
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'CV_Nicola_Pigozzo_' + (attivo === 'ai' ? 'AI_Agentic' : 'Sistemista') + '_' + UPDATED + '.md';
+    a.download = nomeFile() + '.md';
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
+  });
+
+  // ---- stampa ----
+  // Chrome propone come nome del file il titolo del documento nel momento in cui apre
+  // l'anteprima. Con un titolo fisso i due profili uscivano entrambi come
+  // "Nicola Pigozzo — CV.pdf", quindi il secondo diventava "…CV(2).pdf" e nessuno dei
+  // due diceva per quale ruolo era. Qui il titolo viene messo a fuoco prima e rimesso
+  // a posto dopo, e insieme si preparano gli indirizzi da stampare sotto i link.
+  function normalizza(u){ return String(u).replace(/^https?:\/\//,'').replace(/\/$/,''); }
+
+  window.addEventListener('beforeprint', function(){
+    document.title = nomeFile();
+    [].forEach.call(document.querySelectorAll('a[href^="http"]'), function(a){
+      var u = normalizza(a.href), t = (a.textContent || '').replace(/\s+/g,' ').trim();
+      if (t !== u && t.indexOf(u) === -1) a.setAttribute('data-print-url', u);
+    });
+    [].forEach.call(document.querySelectorAll('.stars'), function(s){
+      if (s.dataset.md) s.textContent = s.dataset.md;
+    });
+  });
+
+  window.addEventListener('afterprint', function(){
+    document.title = TITOLO_BASE;
+    [].forEach.call(document.querySelectorAll('a[data-print-url]'), function(a){
+      a.removeAttribute('data-print-url');
+    });
+    [].forEach.call(document.querySelectorAll('.stars'), function(s){
+      if (s.dataset.live) s.textContent = s.dataset.live;
+    });
   });
 
   document.getElementById('bt-print').addEventListener('click', function(){ window.print(); });
