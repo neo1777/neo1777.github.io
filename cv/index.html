@@ -135,9 +135,9 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
   </div>
 
   <div class="card">
-    <h3>App e strumenti pubblici</h3>
-    <p><b>web2md1777</b>, cattura di pagine web in Markdown con nove adapter, pensato come sorgente di ingest per pipeline RAG. <b>mailmerge1777</b>, stampa unione full-stack con PDF da Excel e CSV e invio email massivo. <b>acroform1777</b>, editor di moduli PDF AcroForm. <b>marzio1777</b>, Progressive Web App in React, TypeScript e Firebase con ruoli e permessi, architettura su circa 1.500 nodi. Tutti deployati e documentati.</p>
-    <p class="ev">Prove: <a href="https://github.com/neo1777">github.com/neo1777</a></p>
+    <h3>App e strumenti</h3>
+    <p id="apps-live"><b>Apribile ora:</b> <a href="https://neo1777.github.io/marzio1777/">marzio1777</a>, Progressive Web App in React, TypeScript e Firebase con ruoli e permessi, architettura su circa 1.500 nodi.<br><b>Codice pubblico, da clonare ed eseguire:</b> <a href="https://github.com/neo1777/acroform1777">acroform1777</a>, editor di moduli PDF AcroForm con guida utente e guida sviluppatore; <a href="https://github.com/neo1777/mailmerge1777">mailmerge1777</a>, stampa unione con compilazione PDF da Excel e CSV e invio email massivo, che avendo un componente server si esegue in locale.</p>
+    <p class="ev" id="apps-nota">Questo elenco <b>si verifica da sé quando aprite la pagina</b>: per ogni progetto viene chiamato il suo indirizzo, e finisce fra gli «apribili ora» solo se risponde davvero. Gli altri restano fra il codice pubblico. Non mi fido del fatto che una pagina sia dichiarata attiva: la chiamo e guardo cosa risponde. Vetrina completa: <a href="https://neo1777.github.io/">neo1777.github.io</a></p>
   </div>
 
   <div class="card">
@@ -269,6 +269,52 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
         }
       })
       .catch(function(){ /* resta STARS_FALLBACK, che è già nel documento */ });
+  })();
+
+  // ---- gli strumenti, verificati chiamandoli ----
+  // Lezione pagata il 10/09/2026: `has_pages: true` nell'API di GitHub significa che le
+  // Pages sono ABILITATE, non che il sito esista. Due progetti risultavano attivi per
+  // metadato e rispondevano "Site not found". Quindi qui non si guarda il metadato:
+  // si chiama l'indirizzo e si guarda cosa risponde. Il codice pubblico resta comunque
+  // citato, perché leggibile è diverso da apribile, e la differenza va detta.
+  (function(){
+    var box = document.getElementById('apps-live');
+    if (!box || typeof fetch !== 'function') return;
+
+    var PROGETTI = [
+      { n:'marzio1777',   d:'Progressive Web App in React, TypeScript e Firebase con ruoli e permessi, architettura su circa 1.500 nodi' },
+      { n:'acroform1777', d:'editor di moduli PDF AcroForm con guida utente e guida sviluppatore' },
+      { n:'mailmerge1777',d:'stampa unione con compilazione PDF da Excel e CSV e invio email massivo, con componente server: si esegue in locale' }
+    ];
+    var BASE = 'https://neo1777.github.io/';
+
+    // Same-origin quando la pagina è servita da neo1777.github.io: la risposta è leggibile.
+    function vivo(nome){
+      return fetch(BASE + nome + '/', { method:'GET', cache:'no-store' })
+        .then(function(r){ return r.ok; })
+        .catch(function(){ return null; });   // null = non verificabile, non "morto"
+    }
+
+    Promise.all(PROGETTI.map(function(p){ return vivo(p.n); })).then(function(esiti){
+      if (esiti.every(function(e){ return e === null; })) return;  // nessuna verifica possibile: resta il testo statico
+
+      var aperti = [], soloCodice = [];
+      PROGETTI.forEach(function(p, i){
+        var link = esiti[i]
+          ? '<a href="' + BASE + p.n + '/">' + p.n + '</a>'
+          : '<a href="https://github.com/neo1777/' + p.n + '">' + p.n + '</a>';
+        (esiti[i] ? aperti : soloCodice).push(link + ', ' + p.d);
+      });
+
+      var html = '';
+      if (aperti.length)     html += '<b>Apribile ora:</b> ' + aperti.join('; ') + '.';
+      if (soloCodice.length) html += (html ? '<br>' : '') + '<b>Codice pubblico, da clonare ed eseguire:</b> ' + soloCodice.join('; ') + '.';
+      box.innerHTML = html;
+
+      var nota = document.getElementById('apps-nota');
+      if (nota) nota.innerHTML = '<b>Verificato al ' + new Date().toLocaleDateString('it-IT') + ':</b> ' +
+        aperti.length + ' su ' + PROGETTI.length + ' rispondono. ' + nota.innerHTML;
+    });
   })();
 
   // ---- profili ----

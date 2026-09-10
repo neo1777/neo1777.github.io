@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <url>
-    <loc>https://neo1777.github.io/</loc>
-    <lastmod>2026-05-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
+<url>
+<loc>https://neo1777.github.io/</loc>
+<lastmod>2026-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>1.0</priority>
+</url>
 
-  <url>
-    <loc>https://neo1777.github.io/superlivemax-manual-viewer/</loc>
-    <lastmod>2026-05-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+<url>
+<loc>https://neo1777.github.io/cv/</loc>
+<lastmod>2026-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
 
-  <url>
-    <loc>https://neo1777.github.io/mailmerge1777/</loc>
-    <lastmod>2026-05-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://neo1777.github.io/acroform1777/</loc>
-    <lastmod>2026-05-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+<!-- Solo pagine che rispondono 200, verificate il 10/09/2026 aprendole una per una.
+     mailmerge1777 e acroform1777 sono stati rimossi: le Pages risultano abilitate
+     nei metadati, ma gli indirizzi rispondono "Site not found". Una sitemap che
+     elenca 404 dice ai motori che il sito non e curato. -->
+<url>
+<loc>https://neo1777.github.io/marzio1777/</loc>
+<lastmod>2026-07-02</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
 
 </urlset>
