@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nicola Pigozzo — CV</title>
+<meta name="description" content="CV di Nicola Pigozzo — AI / Agentic Engineer e Sistemista. Ogni affermazione ha un link alla sua prova.">
+<style>
+:root{
+  color-scheme: dark light;
+  --bg:#0f1216; --panel:#151a21; --ink:#e8ecf2; --mid:#a6b0c0; --soft:#6f7a8c;
+  --line:#242c37; --acc:#6ea8fe; --warn:#3a2a12; --warnb:#7a5a1e; --warnk:#ffd68a;
+}
+:root[data-t="light"]{
+  --bg:#ffffff; --panel:#f5f7fa; --ink:#16181d; --mid:#5a6070; --soft:#8b91a1;
+  --line:#e2e5ec; --acc:#1f6feb; --warn:#fff6e0; --warnb:#e5c675; --warnk:#6b4e0a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:26px 24px 72px}
+.bar{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.btn{appearance:none;border:1px solid var(--line);background:var(--panel);color:var(--mid);padding:7px 13px;border-radius:8px;font:600 13px inherit;cursor:pointer}
+.btn:hover{color:var(--ink);border-color:var(--acc)}
+#stale{display:none;background:var(--warn);border:1px solid var(--warnb);color:var(--warnk);padding:11px 14px;border-radius:9px;font-size:13.5px;margin-bottom:16px}
+header{border-bottom:2px solid var(--ink);padding-bottom:15px}
+h1{font-size:30px;margin:0 0 4px;letter-spacing:-.4px}
+.role{font-size:16px;color:var(--mid);margin:0 0 10px}
+.contact{font-size:13.5px;color:var(--mid)}
+.contact a{color:var(--acc);text-decoration:none}
+.contact a:hover{text-decoration:underline}
+.stamp{margin-top:9px;font-size:12.5px;color:var(--soft)}
+.tabs{display:flex;gap:8px;margin:20px 0 24px;flex-wrap:wrap}
+.tab{appearance:none;border:1px solid var(--line);background:transparent;color:var(--mid);padding:9px 16px;border-radius:999px;font:600 14px inherit;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+h2{font-size:12px;text-transform:uppercase;letter-spacing:1.1px;color:var(--soft);margin:30px 0 12px;font-weight:700}
+.lede{font-size:15.5px}
+dl.grid{display:grid;grid-template-columns:172px 1fr;gap:6px 20px;margin:0}
+dl.grid dt{font-weight:650;font-size:14px}
+dl.grid dd{margin:0 0 10px;color:var(--mid);font-size:14px}
+.job{margin-bottom:16px}
+.job-h{display:flex;justify-content:space-between;gap:14px;align-items:baseline;flex-wrap:wrap}
+.job-t{font-weight:650}
+.job-d{color:var(--soft);font-size:13px;white-space:nowrap}
+.job p{margin:3px 0 0;color:var(--mid);font-size:14px}
+.card{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:14px;background:var(--panel)}
+.card h3{margin:0 0 6px;font-size:15.5px}
+.card p{margin:0 0 8px;color:var(--mid);font-size:14px}
+.card p:last-child{margin-bottom:0}
+.ev{font-size:13px;color:var(--soft)}
+.ev a{color:var(--acc);text-decoration:none}
+.ev a:hover{text-decoration:underline}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;background:var(--panel);padding:1px 5px;border-radius:4px}
+.limits{border-left:3px solid var(--ink);padding:2px 0 2px 16px}
+.limits p{margin:0 0 8px;font-size:14px;color:var(--mid)}
+.limits p:last-child{margin-bottom:0}
+.limits b{color:var(--ink)}
+footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-size:12.5px;color:var(--soft)}
+@media (max-width:620px){dl.grid{grid-template-columns:1fr;gap:2px}dl.grid dd{margin-bottom:12px}}
+@media print{
+  :root{--bg:#fff;--panel:#fff;--ink:#000;--mid:#222;--soft:#555;--line:#bbb;--acc:#000}
+  .bar,.tabs,.noprint,#stale{display:none!important}
+  body{font-size:10.5pt;background:#fff;color:#000}
+  .wrap{max-width:none;padding:0}
+  .panel{display:block!important}
+  .panel[hidden]{display:block!important}
+  .pagebreak{page-break-before:always}
+  .card{background:none;border:1px solid #ccc;page-break-inside:avoid}
+  .job,.limits{page-break-inside:avoid}
+  a{color:#000;text-decoration:none}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:8.5pt;color:#555}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="bar noprint">
+  <button class="btn" id="bt-theme" type="button">Tema chiaro</button>
+  <button class="btn" id="bt-md" type="button">Scarica .md</button>
+  <button class="btn" id="bt-print" type="button">Stampa / PDF</button>
+</div>
+
+<div id="stale"></div>
+
+<header>
+  <h1>Nicola Pigozzo</h1>
+  <p class="role" id="roleline">AI / Agentic Engineer · Server MCP in Python, agenti LLM, sistemi RAG</p>
+  <div class="contact">
+    <a href="mailto:nicolainformatica@gmail.com">nicolainformatica@gmail.com</a> ·
+    +39 350 501 4831 ·
+    Provincia di Varese ·
+    <a href="https://github.com/neo1777">github.com/neo1777</a> ·
+    <a href="https://neo1777.github.io">neo1777.github.io</a>
+  </div>
+  <div class="stamp">Aggiornato il <b id="upd">10 settembre 2026</b> · disponibile full remote, immediato · ogni affermazione forte ha un link alla sua prova</div>
+</header>
+
+<div class="tabs noprint" role="tablist">
+  <button class="tab" role="tab" aria-selected="true" data-p="ai">AI / Agentic Engineer</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="sys">Sistemista &amp; Infrastruttura</button>
+</div>
+
+<!-- ================= AI ================= -->
+<section class="panel" id="p-ai" data-title="AI / Agentic Engineer">
+  <h2>Profilo</h2>
+  <p class="lede">Informatico da oltre vent'anni tra sistemistica, reti e sicurezza, con una specializzazione costruita negli ultimi anni su agenti LLM e protocollo MCP. Progetto e porto in produzione server MCP in Python e un gateway self-hosted che li espone a client LLM con OAuth 2.1 e Dynamic Client Registration, reverse proxy, CI/CD con immagini firmate e rollback automatico. Il valore è la combinazione poco comune tra architettura AI agentica e solidità infrastrutturale: le soluzioni che costruisco nascono per essere scalabili, sicure e manutenibili, non per restare prototipi.</p>
+
+  <h2>Competenze</h2>
+  <dl class="grid">
+    <dt>AI e Agentic</dt><dd>Sviluppo di server MCP in Python, in produzione · architetture ad agenti e skill agentiche · orchestrazione di workflow via CLI e n8n · API OpenAI e Anthropic · prompt e context engineering · oltre dieci anni di sperimentazione su reti neurali</dd>
+    <dt>RAG e retrieval</dt><dd>Pipeline RAG · server MCP di retrieval full-text su corpus documentale con SQLite/FTS5 · server MCP che copre praticamente l'intera superficie di NotebookLM con 38 tool · servizio OCR interno come ingest · PostgreSQL</dd>
+    <dt>Architettura e sicurezza</dt><dd>Architettura a plugin · gateway OAuth 2.1 con Dynamic Client Registration e PKCE · reverse proxy con verifica del token · servizi separati in Docker Compose su reti interne · segreti fuori dalle variabili d'ambiente · rate limiting per IP sugli endpoint di autenticazione · componenti owner-only fail-closed: senza identità configurata negano a tutti invece di aprirsi</dd>
+    <dt>Container e supply chain</dt><dd>Docker e Compose · CI/CD su GitHub e GHCR: immagini firmate cosign con verifica fail-closed, SBOM, digest immutabili in lockfile, snapshot pre-update, health-gate e rollback automatico · CI pinnata agli SHA con Dependabot · scansioni Trivy settimanali filtrate sui rilievi con una fix reale · backup cifrati con age e chiave fuori dal server · Tailscale · Linux · Git</dd>
+    <dt>Disciplina di ingegneria</dt><dd>Scrivo garanzie, non promesse. Ledger delle feature: ogni funzionalità è dichiarata insieme alla sua prova, e la CI verifica nei due sensi, perché una feature senza prova o una prova senza feature fa build rossa. Oltre 800 test su sei suite, molti nati da un incidente reale. Documentazione sorvegliata dai test: la reference CLI fallisce se un comando non ha sezione ed esempio, e le pagine tradotte registrano l'hash del sorgente</dd>
+    <dt>Linguaggi e dati</dt><dd><b>Dart</b>, il mio linguaggio principale: Flutter full-stack con BLoC, Provider, Riverpod, gRPC e REST, architettura modulare · <b>Python</b>, con cui ho scritto vps1777 e i miei server MCP, e che uso per backend, infrastruttura e tooling · TypeScript e JavaScript · PostgreSQL, SQLite/FTS5, Hive · React, Vite, Firebase</dd>
+    <dt>Sistemi e reti</dt><dd>Linux avanzato, Windows Server, macOS · reti, firewall, VPN · sicurezza e continuità operativa · troubleshooting su ambienti complessi</dd>
+  </dl>
+
+  <h2>Progetti e contributi, con le prove</h2>
+
+  <div class="card">
+    <h3>graphify — contributo open source su un repository da <span class="stars">oltre 110.000</span> stelle</h3>
+    <p>Alla mia prima issue su GitHub ho documentato perché il clustering aggrega comunità incoerenti in presenza di nodi super-hub: dati misurati sul grafo, causa tracciata a due nodi specifici, e il perché la mitigazione già presente nel loro codice non copriva il caso. Leggendo il sorgente ho trovato anche un bug di arrotondamento che impediva a una soglia di scattare. <b>Aperta alle 19:10, chiusa alle 22:14 dello stesso giorno</b>, e nella versione successiva sono arrivati il fix e due dei tre flag che avevo proposto. Ho poi caratterizzato il nuovo flag su più valori di percentile e raccomandato un default.</p>
+    <p>Su una seconda issue ho documentato un crash con reproducer e causa a livello di riga. Il maintainer ha risposto <i>«Great catch and a correct fix»</i> e ha implementato la correzione direttamente, con due migliorie rispetto alla mia patch: la diagnosi era mia, il codice finale è loro.</p>
+    <p><b>Il riscontro che conta più di tutto, e non viene da me:</b> due mesi dopo un altro utente ha aperto una issue citando la mia <code>#919</code> come origine del flag <code>--exclude-hubs</code>, scrivendo che <i>«works great»</i> e che migliora sensibilmente l'allineamento delle comunità sul proprio grafo da 2.091 nodi.</p>
+    <p class="ev">Prove: <a href="https://github.com/Graphify-Labs/graphify/issues/919">issue #919</a> · <a href="https://github.com/Graphify-Labs/graphify/issues/934">issue #934</a> · <a href="https://github.com/Graphify-Labs/graphify/pull/942">PR #942</a> · <a href="https://github.com/Graphify-Labs/graphify/issues/1800">issue #1800, aperta da un terzo</a></p>
+  </div>
+
+  <div class="card">
+    <h3>vps1777 — gateway self-hosted per server MCP e servizi LLM</h3>
+    <p>Espone i miei server MCP a client LLM dietro un unico URL HTTPS: gateway OAuth 2.1 con Dynamic Client Registration e PKCE, reverse proxy, pannello admin e Mini App Telegram, architettura a plugin. Installer grafico cross-OS in Python puro, Windows nativo senza WSL. Deploy in Docker Compose con backend su rete interna; CI su GHCR con immagini firmate cosign verificate fail-closed, SBOM, digest immutabili e rollback automatico su health-gate.</p>
+    <p>In produzione serve tre miei server MCP: retrieval full-text FTS5 su più database, un server che copre la superficie di NotebookLM con 38 tool, e OCR in container interno.</p>
+    <p><b>Come è costruito:</b> ledger delle feature con verifica bidirezionale in CI, oltre 800 test su sei suite, traduzioni inglesi inchiodate all'hash del sorgente italiano, collaudo su macchina vergine documentato con i rilievi registrati in un findings file. Il file <code>SECURITY.md</code> è un registro dei rilievi di sicurezza con un gate in CI che fa fallire la build se un rilievo dichiarato chiuso perde la sua evidenza nel codice: nasce da una mia dichiarazione di sicurezza invecchiata in silenzio.</p>
+    <p class="ev">Prove: <a href="https://github.com/neo1777/vps1777">github.com/neo1777/vps1777</a> · <a href="https://github.com/neo1777/vps1777/blob/main/SECURITY.md">SECURITY.md</a> · <a href="https://github.com/neo1777/vps1777/blob/main/docs/FEATURES-METODO.md">il metodo del ledger</a></p>
+  </div>
+
+  <div class="card">
+    <h3>App e strumenti pubblici</h3>
+    <p><b>web2md1777</b>, cattura di pagine web in Markdown con nove adapter, pensato come sorgente di ingest per pipeline RAG. <b>mailmerge1777</b>, stampa unione full-stack con PDF da Excel e CSV e invio email massivo. <b>acroform1777</b>, editor di moduli PDF AcroForm. <b>marzio1777</b>, Progressive Web App in React, TypeScript e Firebase con ruoli e permessi, architettura su circa 1.500 nodi. Tutti deployati e documentati.</p>
+    <p class="ev">Prove: <a href="https://github.com/neo1777">github.com/neo1777</a></p>
+  </div>
+
+  <div class="card">
+    <h3>Divulgazione tecnica</h3>
+    <p>Articolo su Medium dedicato al mio workflow di ricerca con l'AI. Canale YouTube con esperimenti su reti neurali di circa dieci anni fa, prima di ChatGPT. <i>Guida Universale al Game Development con Dart, Flutter e Flame</i>: libro tecnico a standard editoriale, oltre 250.000 parole, quasi completo.</p>
+    <p class="ev">Prove: <a href="https://medium.com/@neo1777">medium.com/@neo1777</a> · <a href="https://youtube.com/@neo1777">youtube.com/@neo1777</a></p>
+  </div>
+</section>
+
+<!-- ================= SYS ================= -->
+<section class="panel pagebreak" id="p-sys" data-title="Sistemista e Infrastruttura" hidden>
+  <h2>Profilo</h2>
+  <p class="lede">Oltre vent'anni fra sistemistica, reti e sicurezza. Oggi assistenza tecnica specialistica da remoto su sistemi di videosorveglianza IP, antintrusione e sicurezza integrata, a livello di casa madre. In parallelo amministro un'infrastruttura self-hosted in produzione, con Linux, Docker, CI/CD, backup cifrati e aggiornamenti firmati con rollback automatico, che uso ogni giorno come strumento di lavoro. Il mio metodo è la diagnosi: capire la causa, non aggirare il sintomo.</p>
+
+  <h2>Competenze</h2>
+  <dl class="grid">
+    <dt>Container e deploy</dt><dd>Docker e Docker Compose: reti separate con backend non raggiungibile dall'esterno, container non-root, filesystem in sola lettura, healthcheck su ogni servizio · CI/CD su GitHub Actions e GHCR: immagini firmate cosign con verifica fail-closed, SBOM, digest immutabili, snapshot pre-update, health-gate e rollback automatico · aggiornamento automatico settimanale che sa tornare indietro da solo</dd>
+    <dt>Manutenzione e patching</dt><dd>Dipendenze aggiornate da Dependabot su action, immagini di base e librerie, con la CI pinnata agli SHA · scansioni Trivy settimanali filtrate sui rilievi che hanno davvero una fix, più un ciclo mensile che ricostruisce le immagini quando arrivano le patch della distribuzione: il pannello mostra ciò su cui si può agire, non rumore · unattended-upgrades e fail2ban attivati all'installazione · backup cifrati con age, chiave fuori dal server, restore provato</dd>
+    <dt>Automazione e scripting</dt><dd>Bash · Python per tooling e infrastruttura · installer cross-OS in Python puro via SSH, funzionante su Windows nativo, Mac e Linux · automazione di processi con n8n · Git</dd>
+    <dt>Documentazione operativa</dt><dd>Scrivo documentazione che resta vera, e la faccio controllare da una macchina: un registro dei rilievi di sicurezza con un controllo in CI che fa fallire la build se un rilievo dichiarato chiuso perde la sua evidenza nel codice; un ledger delle feature dove ogni funzione è dichiarata con la sua prova e la CI verifica nei due sensi; la reference dei comandi che fallisce se un comando non ha sezione ed esempio. Nasce da un problema concreto: una mia dichiarazione di sicurezza era invecchiata in silenzio, e non volevo che ricapitasse</dd>
+    <dt>Collaudo e verifica</dt><dd>Oltre 800 test su sei suite, molti nati da un guasto reale e diventati controlli permanenti · collaudo su macchina vergine documentato passo per passo, con installazione da zero, HTTPS pubblico e sopravvivenza al reboot, e i rilievi emersi registrati in un findings file, incluso il caso di una distribuzione instabile con i volumi cifrati</dd>
+    <dt>Ambienti misti</dt><dd>Windows Server e Active Directory · macOS · virtualizzazione · videosorveglianza IP, antintrusione e sicurezza integrata</dd>
+    <dt>Automazione con AI</dt><dd>Specializzazione recente su agenti LLM e protocollo MCP, usata come moltiplicatore operativo: costruisco strumenti che riducono il lavoro ripetitivo invece di adottarli già fatti. È il motivo per cui entro in linguaggi e codebase che non sono i miei e produco qualcosa di utile in tempi brevi</dd>
+  </dl>
+
+  <h2>Progetti e contributi, con le prove</h2>
+
+  <div class="card">
+    <h3>vps1777 — infrastruttura self-hosted in produzione, amministrata da me</h3>
+    <p>Un gateway che espone servizi applicativi su un unico endpoint HTTPS pubblico, e che uso ogni giorno come infrastruttura di lavoro. Dal punto di vista sistemistico: Docker Compose su reti separate con il backend su rete interna non raggiungibile dall'esterno, container non-root con capability ridotte e filesystem in sola lettura, segreti fuori dalle variabili d'ambiente, rate limiting per IP sugli endpoint di autenticazione, healthcheck su ogni servizio, hardening dell'host automatizzato all'installazione. Aggiornamenti firmati e verificati fail-closed, con snapshot prima dell'update e rollback automatico se la nuova versione non torna in salute, anche in modalità non presidiata.</p>
+    <p><b>Verificato, non dichiarato:</b> collaudo su macchina vergine del 27 agosto 2026 documentato end-to-end, con installazione da zero, HTTPS pubblico, riavvio e ripartenza dei servizi, e i rilievi emersi registrati in un findings file, incluso quello di una distribuzione risultata instabile con i volumi cifrati.</p>
+    <p class="ev">Prove: <a href="https://github.com/neo1777/vps1777">github.com/neo1777/vps1777</a> · <a href="https://github.com/neo1777/vps1777/blob/main/SECURITY.md">threat model e registro dei rilievi</a></p>
+  </div>
+
+  <div class="card">
+    <h3>graphify — contributo open source su un repository da <span class="stars">oltre 110.000</span> stelle</h3>
+    <p>Alla mia prima issue ho documentato un difetto di clustering con dati misurati e causa tracciata, e leggendo il sorgente ho trovato un bug latente. <b>Chiusa in tre ore:</b> nella versione successiva sono arrivati il fix e due opzioni che avevo proposto. Su una seconda issue il maintainer ha definito la mia patch <i>«a correct fix»</i> e ha implementato la correzione direttamente, con due migliorie rispetto alla mia. Due mesi dopo un altro utente ha aperto una issue citando la <code>#919</code> come origine del flag <code>--exclude-hubs</code>, scrivendo che <i>«works great»</i> sul proprio grafo da 2.091 nodi.</p>
+    <p class="ev">Prove: <a href="https://github.com/Graphify-Labs/graphify/issues/919">#919</a> · <a href="https://github.com/Graphify-Labs/graphify/issues/934">#934</a> · <a href="https://github.com/Graphify-Labs/graphify/pull/942">PR #942</a> · <a href="https://github.com/Graphify-Labs/graphify/issues/1800">#1800, di un terzo</a></p>
+  </div>
+</section>
+
+<!-- ================= comune ================= -->
+<section id="p-common">
+  <h2>Esperienza professionale</h2>
+  <div class="job"><div class="job-h"><div class="job-t">Addetto Assistenza Tecnica e Help Desk — S.&amp; A. S.r.l. (Gallarate, VA)</div><div class="job-d">Ott 2024 – oggi</div></div>
+  <p>Assistenza tecnica da remoto su videosorveglianza IP, antintrusione e sicurezza integrata, a supporto di installatori, rivenditori e clienti finali: diagnosi collegandomi ai sistemi del cliente, configurazione, verifica di rete. Oltre 1.400 ticket risolti con soddisfazione clienti del 99,8% nel 2025. Inquadramento 3° livello CCNL Commercio e Terziario da gennaio 2026.</p></div>
+
+  <div class="job"><div class="job-h"><div class="job-t">Tecnico Sistemista — Synergytechnology</div><div class="job-d">Feb 2024 – Ott 2024</div></div>
+  <p>Presidio sistemistico settimanale presso un'azienda manifatturiera del settore chimico, circa cento dipendenti su tre sedi: impianto, rete, assistenza agli utenti. Installazioni informatiche da armadi rack a postazioni di lavoro.</p></div>
+
+  <div class="job"><div class="job-h"><div class="job-t">Addetto Vendita e Supporto Tecnico — Marcantonio S.r.l. (Varese)</div><div class="job-d">Apr 2016 – Nov 2019</div></div>
+  <p>Consulenza tecnica e supporto pre e post-vendita; formazione dei clienti e gestione autonoma del punto vendita.</p></div>
+
+  <div class="job"><div class="job-h"><div class="job-t">Sistemista e Consulente IT autonomo — Nicolainformatica (Milano)</div><div class="job-d">Feb 2004 – Dic 2014</div></div>
+  <p>Servizi IT completi per PMI e privati, con portfolio fidelizzato per oltre dieci anni: server, reti, firewall, sicurezza. Assistenza on-site in conto terzi presso grandi clienti, tra cui Repubblica e Autogrill.</p></div>
+
+  <div class="job"><div class="job-h"><div class="job-t">Tecnico Riparatore — Olivetti</div><div class="job-d">2002 – 2004</div></div>
+  <p>Diagnosi e riparazione a livello di componente. Prima formazione strutturata al metodo diagnostico.</p></div>
+
+  <p style="color:var(--soft);font-size:13px;margin-top:2px">Esperienza precedente: elettricista per impianti civili e industriali, dal 1993 al 1998. Nel periodo 2020-2023: COVID, NASpI e attività freelance occasionale.</p>
+
+  <h2>Formazione e lingue</h2>
+  <p style="font-size:14px;color:var(--mid);margin:0 0 8px">Diploma di Perito Tecnico, ITIS Varese, Elettronica e Telecomunicazioni, 2002. Formazione continua autodidatta: AI applicata e sistemi agentici, Flutter e Dart, Linux e sysadmin, containerizzazione. Sperimentazione costante tramite progetti personali e contributi open source.</p>
+  <p style="font-size:14px;color:var(--mid);margin:0">Italiano madrelingua.</p>
+
+  <h2>Quello che non ho</h2>
+  <div class="limits">
+    <p><b>Inglese scritto e parlato sotto il B2.</b> Leggo documentazione tecnica, specifiche e codebase senza difficoltà, e lavoro ogni giorno su materiale in inglese. La produzione scritta e orale è in miglioramento attivo, ed è il mio limite più serio.</p>
+    <p><b>Nessuna esperienza retribuita come sviluppatore e nessuna laurea.</b> Il mio portfolio è codice pubblico e un contributo accolto su un repository da oltre centomila stelle.</p>
+    <p><b>Nessun cloud pubblico con esperienza dimostrabile</b>, nessuna certificazione, nessun Kubernetes in produzione, nessun Terraform, nessun machine learning classico. Non uso LangChain, CrewAI o LangGraph: costruisco i componenti di orchestrazione invece di ereditarli. Non uso FastAPI: il gateway è scritto su Starlette e uvicorn con pydantic, cioè lo strato su cui FastAPI è costruito.</p>
+    <p style="color:var(--soft);font-size:13px">Questa sezione esiste perché emergerebbe comunque al primo colloquio tecnico. Dichiararla costa poco e rende verificabile tutto il resto.</p>
+  </div>
+</section>
+
+<footer>
+  Autorizzo il trattamento dei dati personali ai sensi del Reg. UE 2016/679 e del D.Lgs. 196/2003.
+  <span class="noprint"> · La stampa produce entrambi i profili su pagine separate, in bianco e nero e a colonna singola, leggibile dai sistemi ATS.</span>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var UPDATED = "2026-09-10";      // <<< unica data da cambiare quando aggiorni il CV
+  var SOGLIA_GIORNI = 60;          // oltre questa soglia la pagina dichiara di essere vecchia
+  var STARS_FALLBACK = "oltre 110.000";
+
+  // ---- tema: default scuro, scelta ricordata quando il browser lo permette ----
+  var root = document.documentElement, bt = document.getElementById('bt-theme');
+  function setTheme(t){
+    root.setAttribute('data-t', t);
+    bt.textContent = (t === 'light') ? 'Tema scuro' : 'Tema chiaro';
+    try { localStorage.setItem('cv-theme', t); } catch(e){}
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('cv-theme'); } catch(e){}
+  setTheme(saved === 'light' ? 'light' : 'dark');
+  bt.addEventListener('click', function(){
+    setTheme(root.getAttribute('data-t') === 'light' ? 'dark' : 'light');
+  });
+
+  // ---- data e avviso di obsolescenza: la pagina non si aggiorna, ma sa dirlo ----
+  var MESI = ['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
+  var d = new Date(UPDATED + 'T00:00:00');
+  document.getElementById('upd').textContent = d.getDate() + ' ' + MESI[d.getMonth()] + ' ' + d.getFullYear();
+  var giorni = Math.floor((Date.now() - d.getTime()) / 86400000);
+  if (giorni > SOGLIA_GIORNI) {
+    var box = document.getElementById('stale');
+    box.style.display = 'block';
+    box.innerHTML = '<b>Questa pagina non viene aggiornata da ' + giorni + ' giorni.</b> ' +
+      'I dati verificabili tramite i link restano validi, ma quanto scritto qui potrebbe essere invecchiato. ' +
+      'Per la versione corrente scrivere a <a href="mailto:nicolainformatica@gmail.com" style="color:inherit">nicolainformatica@gmail.com</a>.';
+  }
+
+  // ---- il numero che invecchia più in fretta, letto dalla fonte ----
+  // Se la rete non è disponibile resta il valore statico: nessun buco, nessuna bugia.
+  (function(){
+    var nodes = document.querySelectorAll('.stars');
+    if (!nodes.length || typeof fetch !== 'function') return;
+    fetch('https://api.github.com/repos/Graphify-Labs/graphify', {headers:{'Accept':'application/vnd.github+json'}})
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){
+        if (!j || typeof j.stargazers_count !== 'number') return;
+        var n = j.stargazers_count.toLocaleString('it-IT');
+        for (var i=0;i<nodes.length;i++){
+          nodes[i].textContent = n;
+          nodes[i].title = 'Letto da api.github.com al caricamento di questa pagina';
+        }
+      })
+      .catch(function(){ /* resta STARS_FALLBACK, che è già nel documento */ });
+  })();
+
+  // ---- profili ----
+  var tabs = [].slice.call(document.querySelectorAll('.tab'));
+  var roles = {
+    ai:  'AI / Agentic Engineer · Server MCP in Python, agenti LLM, sistemi RAG',
+    sys: 'Sistemista e Infrastruttura · Linux, Docker, CI/CD, sicurezza operativa'
+  };
+  var attivo = 'ai';
+  function show(k){
+    attivo = k;
+    tabs.forEach(function(t){ t.setAttribute('aria-selected', String(t.dataset.p === k)); });
+    document.getElementById('p-ai').hidden  = (k !== 'ai');
+    document.getElementById('p-sys').hidden = (k !== 'sys');
+    document.getElementById('roleline').textContent = roles[k];
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.dataset.p); }); });
+  show('ai');
+
+  // ---- export Markdown del profilo attivo, generato dal DOM per non poter divergere ----
+  function txt(el){ return (el.textContent || '').replace(/\s+/g,' ').trim(); }
+  function sezioneMd(sec){
+    var out = [], kids = sec.children;
+    for (var i=0;i<kids.length;i++){
+      var el = kids[i], tag = el.tagName;
+      if (tag === 'H2') { out.push('', '## ' + txt(el), ''); }
+      else if (tag === 'P' && el.classList.contains('lede')) { out.push(txt(el), ''); }
+      else if (tag === 'DL') {
+        var ch = el.children;
+        for (var j=0;j<ch.length;j++){
+          if (ch[j].tagName === 'DT') out.push('**' + txt(ch[j]) + '** — ' + txt(ch[j+1] || {}));
+        }
+        out.push('');
+      }
+      else if (el.classList.contains('job')) {
+        out.push('### ' + txt(el.querySelector('.job-t')) + '  \n*' + txt(el.querySelector('.job-d')) + '*', '', txt(el.querySelector('p')), '');
+      }
+      else if (el.classList.contains('card')) {
+        out.push('### ' + txt(el.querySelector('h3')));
+        el.querySelectorAll('p').forEach(function(p){
+          if (p.classList.contains('ev')) {
+            var links = [].slice.call(p.querySelectorAll('a')).map(function(a){ return '[' + txt(a) + '](' + a.href + ')'; });
+            out.push('', 'Prove: ' + links.join(' · '));
+          } else out.push('', txt(p));
+        });
+        out.push('');
+      }
+      else if (el.classList.contains('limits')) {
+        el.querySelectorAll('p').forEach(function(p){ out.push('- ' + txt(p)); });
+        out.push('');
+      }
+      else if (tag === 'P') { out.push(txt(el), ''); }
+    }
+    return out;
+  }
+  document.getElementById('bt-md').addEventListener('click', function(){
+    var sec = document.getElementById(attivo === 'ai' ? 'p-ai' : 'p-sys');
+    var righe = [
+      '# Nicola Pigozzo',
+      '',
+      '**' + sec.dataset.title + '**',
+      '',
+      'nicolainformatica@gmail.com · +39 350 501 4831 · Provincia di Varese',
+      'github.com/neo1777 · neo1777.github.io',
+      '',
+      'Disponibile full remote, immediato. CV aggiornato il ' + document.getElementById('upd').textContent + '.',
+      ''
+    ]
+      .concat(sezioneMd(sec))
+      .concat(sezioneMd(document.getElementById('p-common')))
+      .concat(['', '---', '', 'Autorizzo il trattamento dei dati personali ai sensi del Reg. UE 2016/679 e del D.Lgs. 196/2003.']);
+    var blob = new Blob([righe.join('\n').replace(/\n{3,}/g,'\n\n')], {type:'text/markdown;charset=utf-8'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'CV_Nicola_Pigozzo_' + (attivo === 'ai' ? 'AI_Agentic' : 'Sistemista') + '_' + UPDATED + '.md';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
+  });
+
+  document.getElementById('bt-print').addEventListener('click', function(){ window.print(); });
+})();
+</script>
+</body>
+</html>
