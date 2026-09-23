@@ -134,18 +134,18 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
   <h2>Competenze</h2>
   <dl class="grid">
     <dt>AI e Agentic</dt><dd>Sviluppo di server MCP in Python, in produzione · architetture ad agenti e skill agentiche · orchestrazione di workflow via CLI e n8n · API OpenAI e Anthropic · prompt e context engineering · oltre dieci anni di sperimentazione su reti neurali</dd>
-    <dt>RAG e retrieval</dt><dd>Pipeline RAG · server MCP di retrieval full-text su corpus documentale con SQLite/FTS5 · server MCP che copre praticamente l'intera superficie di NotebookLM con 38 tool · servizio OCR interno come ingest · PostgreSQL</dd>
+    <dt>RAG e retrieval</dt><dd>Pipeline RAG · server MCP di retrieval ibrido su corpus documentale: BM25 (SQLite FTS5) + ricerca vettoriale (sqlite-vec, embedding multilingual-e5-small in ONNX) fusi con Reciprocal Rank Fusion, parametri scelti su un banco di prova fissato prima · server MCP che copre praticamente l'intera superficie di NotebookLM con 38 tool · servizio OCR interno come ingest · PostgreSQL</dd>
     <dt>Architettura e sicurezza</dt><dd>Architettura a plugin · gateway OAuth 2.1 con Dynamic Client Registration e PKCE · reverse proxy con verifica del token · servizi separati in Docker Compose su reti interne · segreti fuori dalle variabili d'ambiente · rate limiting per IP sugli endpoint di autenticazione · componenti owner-only fail-closed: senza identità configurata negano a tutti invece di aprirsi</dd>
     <dt>Container e supply chain</dt><dd>Docker e Compose · CI/CD su GitHub e GHCR: immagini firmate cosign con verifica fail-closed, SBOM, digest immutabili in lockfile, snapshot pre-update, health-gate e rollback automatico · CI pinnata agli SHA con Dependabot · scansioni Trivy settimanali filtrate sui rilievi con una fix reale · backup cifrati con age e chiave fuori dal server · Tailscale · Linux · Git</dd>
     <dt>Disciplina di ingegneria</dt><dd>Scrivo garanzie, non promesse. Ledger delle feature: ogni funzionalità è dichiarata insieme alla sua prova, e la CI verifica nei due sensi, perché una feature senza prova o una prova senza feature fa build rossa. Oltre 800 test su sei suite, molti nati da un incidente reale. Documentazione sorvegliata dai test: la reference CLI fallisce se un comando non ha sezione ed esempio, e le pagine tradotte registrano l'hash del sorgente</dd>
-    <dt>Linguaggi e dati</dt><dd><b>Dart</b>, il mio linguaggio principale: Flutter full-stack con BLoC, Provider, Riverpod, gRPC e REST, architettura modulare · <b>Python</b>, con cui ho scritto vps1777 e i miei server MCP, e che uso per backend, infrastruttura e tooling · TypeScript e JavaScript · PostgreSQL, SQLite/FTS5, Hive · React, Vite, Firebase</dd>
+    <dt>Linguaggi e dati</dt><dd><b>Dart</b>, il mio linguaggio principale: Flutter full-stack con BLoC, Provider, Riverpod, gRPC e REST, architettura modulare · <b>Python</b>, con cui ho scritto vps1777 e i miei server MCP, e che uso per backend, infrastruttura e tooling · TypeScript e JavaScript · PostgreSQL, SQLite (FTS5, sqlite-vec), Hive · React, Vite, Firebase</dd>
     <dt>Sistemi e reti</dt><dd>Linux avanzato, Windows Server, macOS · reti, firewall, VPN · sicurezza e continuità operativa · troubleshooting su ambienti complessi</dd>
   </dl>
 
   <h2>Progetti e contributi, con le prove</h2>
 
   <div class="card">
-    <h3>graphify — contributo open source su un repository da <span class="stars">oltre 116.000</span> stelle</h3>
+    <h3>graphify — contributo open source su un repository da <span class="stars">oltre 120.000</span> stelle</h3>
     <p>Alla mia prima issue su GitHub ho documentato perché il clustering aggrega comunità incoerenti in presenza di nodi super-hub: dati misurati sul grafo, causa tracciata a due nodi specifici, e il perché la mitigazione già presente nel loro codice non copriva il caso. Leggendo il sorgente ho trovato anche un bug di arrotondamento che impediva a una soglia di scattare. <b>Aperta alle 19:10, chiusa alle 22:14 dello stesso giorno</b>, e nella versione successiva sono arrivati il fix e due dei tre flag che avevo proposto. Ho poi caratterizzato il nuovo flag su più valori di percentile e raccomandato un default.</p>
     <p>Su una seconda issue ho documentato un crash con reproducer e causa a livello di riga. Il maintainer ha risposto <i>«Great catch and a correct fix»</i> e ha implementato la correzione direttamente, con due migliorie rispetto alla mia patch: la diagnosi era mia, il codice finale è loro.</p>
     <p><b>Il riscontro che conta più di tutto, e non viene da me:</b> due mesi dopo un altro utente ha aperto una issue citando la mia <code>#919</code> come origine del flag <code>--exclude-hubs</code>, scrivendo che <i>«works great»</i> e che migliora sensibilmente l'allineamento delle comunità sul proprio grafo da 2.091 nodi.</p>
@@ -155,7 +155,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
   <div class="card">
     <h3>vps1777 — gateway self-hosted per server MCP e servizi LLM</h3>
     <p>Espone i miei server MCP a client LLM dietro un unico URL HTTPS: gateway OAuth 2.1 con Dynamic Client Registration e PKCE, reverse proxy, pannello admin e Mini App Telegram, architettura a plugin. Installer grafico cross-OS in Python puro, Windows nativo senza WSL. Deploy in Docker Compose con backend su rete interna; CI su GHCR con immagini firmate cosign verificate fail-closed, SBOM, digest immutabili e rollback automatico su health-gate.</p>
-    <p>In produzione serve tre miei server MCP: retrieval full-text FTS5 su più database, un server che copre la superficie di NotebookLM con 38 tool, e OCR in container interno.</p>
+    <p>In produzione serve due miei server MCP — retrieval ibrido (BM25 + vettori) su più database, e un server che copre la superficie di NotebookLM con 38 tool — più un servizio OCR in container interno.</p>
     <p><b>Come è costruito:</b> ledger delle feature con verifica bidirezionale in CI, oltre 800 test su sei suite, traduzioni inglesi inchiodate all'hash del sorgente italiano, collaudo su macchina vergine documentato con i rilievi registrati in un findings file. Il file <code>SECURITY.md</code> è un registro dei rilievi di sicurezza con un gate in CI che fa fallire la build se un rilievo dichiarato chiuso perde la sua evidenza nel codice: nasce da una mia dichiarazione di sicurezza invecchiata in silenzio.</p>
     <p class="ev">Prove: <a href="https://github.com/neo1777/vps1777">github.com/neo1777/vps1777</a> · <a href="https://github.com/neo1777/vps1777/blob/main/SECURITY.md">SECURITY.md</a> · <a href="https://github.com/neo1777/vps1777/blob/main/docs/FEATURES-METODO.md">il metodo del ledger</a></p>
   </div>
@@ -204,7 +204,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
   </div>
 
   <div class="card">
-    <h3>graphify — contributo open source su un repository da <span class="stars">oltre 116.000</span> stelle</h3>
+    <h3>graphify — contributo open source su un repository da <span class="stars">oltre 120.000</span> stelle</h3>
     <p>Alla mia prima issue ho documentato un difetto di clustering con dati misurati e causa tracciata, e leggendo il sorgente ho trovato un bug latente. <b>Chiusa in tre ore:</b> nella versione successiva sono arrivati il fix e due opzioni che avevo proposto. Su una seconda issue il maintainer ha definito la mia patch <i>«a correct fix»</i> e ha implementato la correzione direttamente, con due migliorie rispetto alla mia. Due mesi dopo un altro utente ha aperto una issue citando la <code>#919</code> come origine del flag <code>--exclude-hubs</code>, scrivendo che <i>«works great»</i> sul proprio grafo da 2.091 nodi.</p>
     <p class="ev">Prove: <a href="https://github.com/Graphify-Labs/graphify/issues/919">#919</a> · <a href="https://github.com/Graphify-Labs/graphify/issues/934">#934</a> · <a href="https://github.com/Graphify-Labs/graphify/pull/942">PR #942</a> · <a href="https://github.com/Graphify-Labs/graphify/issues/1800">#1800, di un terzo</a></p>
   </div>
@@ -253,7 +253,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
 <script>
 (function(){
   "use strict";
-  var UPDATED = "2026-09-10";      // <<< unica data da cambiare quando aggiorni il CV
+  var UPDATED = "2026-09-23";      // <<< unica data da cambiare quando aggiorni il CV
   var SOGLIA_GIORNI = 60;          // oltre questa soglia la pagina dichiara di essere vecchia
   var TITOLO_BASE = document.title;
   var SEP = '§§';        // marcatore interno: sopravvive al collasso degli spazi
@@ -293,7 +293,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
 
   // ---- il numero che invecchia più in fretta, letto dalla fonte ----
   // Se la rete non è disponibile resta il valore scritto nel documento
-  // («oltre 116.000»): nessun buco, nessuna bugia, solo una stima per difetto.
+  // («oltre 120.000»): nessun buco, nessuna bugia, solo una stima per difetto.
   (function(){
     var nodes = document.querySelectorAll('.stars');
     if (!nodes.length || typeof fetch !== 'function') return;
@@ -314,7 +314,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
           nodes[i].title = 'Letto da api.github.com al caricamento di questa pagina';
         }
       })
-      .catch(function(){ /* resta «oltre 116.000», che è già scritto nel documento */ });
+      .catch(function(){ /* resta «oltre 120.000», che è già scritto nel documento */ });
   })();
 
   // ---- gli strumenti, verificati chiamandoli ----
