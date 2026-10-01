@@ -145,11 +145,12 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
   <h2>Progetti e contributi, con le prove</h2>
 
   <div class="card">
-    <h3>graphify — contributo open source su un repository da <span class="stars">oltre 120.000</span> stelle</h3>
+    <h3>graphify — contributor di un repository da <span class="stars">oltre 120.000</span> stelle</h3>
     <p>Alla mia prima issue su GitHub ho documentato perché il clustering aggrega comunità incoerenti in presenza di nodi super-hub: dati misurati sul grafo, causa tracciata a due nodi specifici, e il perché la mitigazione già presente nel loro codice non copriva il caso. Leggendo il sorgente ho trovato anche un bug di arrotondamento che impediva a una soglia di scattare. <b>Aperta alle 19:10, chiusa alle 22:14 dello stesso giorno</b>, e nella versione successiva sono arrivati il fix e due dei tre flag che avevo proposto. Ho poi caratterizzato il nuovo flag su più valori di percentile e raccomandato un default.</p>
     <p>Su una seconda issue ho documentato un crash con reproducer e causa a livello di riga. Il maintainer ha risposto <i>«Great catch and a correct fix»</i> e ha implementato la correzione direttamente, con due migliorie rispetto alla mia patch: la diagnosi era mia, il codice finale è loro.</p>
+    <p><b>Contributor, con codice mio in release:</b> a fine settembre 2026 due mie pull request sono state incluse dal maintainer nella <b>release v0.9.73</b>, con un cherry-pick che mi conserva come autore dei commit. Una corregge <code>--exclude-hubs</code> (i nodi legati solo a un hub restano nella sua comunità invece di finire isolati), l'altra il bonus «surprise» che segnalava come collegamenti tra repository due file nella cartella radice della scansione. Il ciclo è lo stesso della prima issue: misurare su un grafo vero, trovare la causa nel sorgente, proporre il fix.</p>
     <p><b>Il riscontro che conta più di tutto, e non viene da me:</b> due mesi dopo un altro utente ha aperto una issue citando la mia <code>#919</code> come origine del flag <code>--exclude-hubs</code>, scrivendo che <i>«works great»</i> e che migliora sensibilmente l'allineamento delle comunità sul proprio grafo da 2.091 nodi.</p>
-    <p class="ev">Prove: <a href="https://github.com/Graphify-Labs/graphify/issues/919">issue #919</a> · <a href="https://github.com/Graphify-Labs/graphify/issues/934">issue #934</a> · <a href="https://github.com/Graphify-Labs/graphify/pull/942">PR #942</a> · <a href="https://github.com/Graphify-Labs/graphify/issues/1800">issue #1800, aperta da un terzo</a></p>
+    <p class="ev">Prove: <a href="https://github.com/Graphify-Labs/graphify/issues/919">issue #919</a> · <a href="https://github.com/Graphify-Labs/graphify/issues/934">issue #934</a> · <a href="https://github.com/Graphify-Labs/graphify/pull/942">PR #942</a> · <a href="https://github.com/Graphify-Labs/graphify/issues/1800">issue #1800, aperta da un terzo</a> · <a href="https://github.com/Graphify-Labs/graphify/pull/3933">PR #3933</a> · <a href="https://github.com/Graphify-Labs/graphify/pull/3934">PR #3934</a> · <a href="https://github.com/Graphify-Labs/graphify/releases/tag/v0.9.73">release v0.9.73</a></p>
   </div>
 
   <div class="card">
@@ -204,9 +205,10 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
   </div>
 
   <div class="card">
-    <h3>graphify — contributo open source su un repository da <span class="stars">oltre 120.000</span> stelle</h3>
+    <h3>graphify — contributor di un repository da <span class="stars">oltre 120.000</span> stelle</h3>
     <p>Alla mia prima issue ho documentato un difetto di clustering con dati misurati e causa tracciata, e leggendo il sorgente ho trovato un bug latente. <b>Chiusa in tre ore:</b> nella versione successiva sono arrivati il fix e due opzioni che avevo proposto. Su una seconda issue il maintainer ha definito la mia patch <i>«a correct fix»</i> e ha implementato la correzione direttamente, con due migliorie rispetto alla mia. Due mesi dopo un altro utente ha aperto una issue citando la <code>#919</code> come origine del flag <code>--exclude-hubs</code>, scrivendo che <i>«works great»</i> sul proprio grafo da 2.091 nodi.</p>
-    <p class="ev">Prove: <a href="https://github.com/Graphify-Labs/graphify/issues/919">#919</a> · <a href="https://github.com/Graphify-Labs/graphify/issues/934">#934</a> · <a href="https://github.com/Graphify-Labs/graphify/pull/942">PR #942</a> · <a href="https://github.com/Graphify-Labs/graphify/issues/1800">#1800, di un terzo</a></p>
+    <p><b>Contributor, con codice mio in release:</b> a fine settembre 2026 due mie pull request (un fix al clustering con <code>--exclude-hubs</code> e uno all'analisi cross-repository) sono entrate nella <b>release v0.9.73</b>, con me come autore dei commit.</p>
+    <p class="ev">Prove: <a href="https://github.com/Graphify-Labs/graphify/issues/919">#919</a> · <a href="https://github.com/Graphify-Labs/graphify/issues/934">#934</a> · <a href="https://github.com/Graphify-Labs/graphify/pull/942">PR #942</a> · <a href="https://github.com/Graphify-Labs/graphify/issues/1800">#1800, di un terzo</a> · <a href="https://github.com/Graphify-Labs/graphify/pull/3933">PR #3933</a> · <a href="https://github.com/Graphify-Labs/graphify/pull/3934">PR #3934</a> · <a href="https://github.com/Graphify-Labs/graphify/releases/tag/v0.9.73">release v0.9.73</a></p>
   </div>
 </section>
 
@@ -253,7 +255,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
 <script>
 (function(){
   "use strict";
-  var UPDATED = "2026-09-24";      // <<< unica data da cambiare quando aggiorni il CV
+  var UPDATED = "2026-10-01";      // <<< unica data da cambiare quando aggiorni il CV
   var SOGLIA_GIORNI = 60;          // oltre questa soglia la pagina dichiara di essere vecchia
   var TITOLO_BASE = document.title;
   var SEP = '§§';        // marcatore interno: sopravvive al collasso degli spazi
