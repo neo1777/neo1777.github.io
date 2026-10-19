@@ -1,259 +1,273 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nicola Pigozzo — neo1777 · Agenti LLM, MCP, infrastruttura</title>
-<meta name="description" content="Nicola Pigozzo (neo1777): server MCP in Python, agenti LLM e infrastruttura self-hosted in produzione. Codice pubblico, contributi open source e CV online.">
-
-<!-- SEO -->
-<link rel="canonical" href="https://neo1777.github.io/">
-<meta name="author" content="Nicola Pigozzo">
-<meta name="robots" content="index, follow">
-
-<!-- Open Graph: è questo che LinkedIn e WhatsApp mostrano quando incolli il link -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://neo1777.github.io/">
-<meta property="og:title" content="Nicola Pigozzo — server MCP, agenti LLM, infrastruttura">
-<meta property="og:description" content="Costruisco server MCP in Python e un gateway self-hosted che li espone a client LLM, con OAuth 2.1, CI firmata e rollback automatico. Codice pubblico e verificabile.">
-<meta property="og:locale" content="it_IT">
-<meta property="og:site_name" content="neo1777">
-
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nicola Pigozzo — server MCP, agenti LLM, infrastruttura">
-<meta name="twitter:description" content="Costruisco server MCP in Python e un gateway self-hosted che li espone a client LLM. Codice pubblico e verificabile.">
-
-<meta name="google-site-verification" content="SPfNOCI2iUtBf_A2mthf03pZdFryIJFRnIlUJyLak8M" />
-
-<style>
-:root {
-  --bg-color: #0d1117;
-  --card-bg: #161b22;
-  --text-color: #c9d1d9;
-  --muted: #8b949e;
-  --border: #30363d;
-  --accent-color: #8a2be2;
-  --link-hover: #ab79e8;
-}
-* { box-sizing: border-box; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  margin: 0;
-  padding: 2rem 1.25rem 3rem;
-  line-height: 1.6;
-}
-.container { max-width: 860px; margin: 0 auto; }
-header { text-align: center; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
-h1 { color: #fff; margin: 0 0 .35rem; font-size: 2rem; letter-spacing: -.5px; }
-.handle { color: var(--accent-color); font-weight: 600; }
-.bio { font-size: 1.08rem; color: var(--muted); max-width: 640px; margin: 0 auto; }
-.meta-line { margin-top: .9rem; font-size: .92rem; color: var(--muted); }
-.meta-line a { color: var(--accent-color); text-decoration: none; }
-.meta-line a:hover { color: var(--link-hover); text-decoration: underline; }
-
-.hero {
-  background: linear-gradient(180deg, rgba(138,43,226,.13), rgba(138,43,226,.04));
-  border: 1px solid #3d2a5c; border-radius: 10px;
-  padding: 1.4rem 1.6rem; margin-bottom: 1rem;
-  display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; justify-content: space-between;
-}
-.hero h2 { color: #fff; margin: 0 0 .3rem; font-size: 1.2rem; }
-.hero p { margin: 0; color: var(--muted); font-size: .95rem; max-width: 520px; }
-
-.section-title {
-  color: #fff; margin-top: 2.6rem; margin-bottom: 1.2rem; font-size: 1.4rem;
-  border-bottom: 2px solid var(--border); padding-bottom: .5rem; display: inline-block;
-}
-.section-sub { color: var(--muted); font-size: .93rem; margin: -.6rem 0 1.2rem; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.4rem; }
-.card {
-  background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 8px;
-  padding: 1.4rem; transition: transform .2s, border-color .2s; display: flex; flex-direction: column;
-}
-.card:hover { transform: translateY(-3px); border-color: var(--accent-color); }
-.card.wide { grid-column: 1 / -1; }
-.card h3 { margin: 0 0 .55rem; color: #fff; font-size: 1.16rem; }
-.card p { color: var(--muted); font-size: .95rem; margin: 0 0 .8rem; }
-.card p.grow { flex-grow: 1; }
-.tags { display: flex; gap: .4rem; flex-wrap: wrap; margin: 0 0 .9rem; }
-.tag { font-size: .74rem; letter-spacing: .3px; text-transform: uppercase; color: var(--muted);
-  border: 1px solid var(--border); border-radius: 999px; padding: .16rem .55rem; }
-.links { display: flex; gap: .8rem; flex-wrap: wrap; }
-.btn { text-decoration: none; padding: .5rem 1rem; border-radius: 6px; font-size: .9rem; font-weight: 600; transition: all .2s; text-align: center; display: inline-block; }
-.btn-primary { background-color: #238636; color: #fff; border: 1px solid rgba(240,246,252,.1); }
-.btn-primary:hover { background-color: #2ea043; }
-.btn-accent { background-color: var(--accent-color); color: #fff; border: 1px solid transparent; }
-.btn-accent:hover { background-color: var(--link-hover); }
-.btn-outline { background-color: transparent; color: var(--text-color); border: 1px solid var(--border); }
-.btn-outline:hover { border-color: var(--muted); color: #fff; }
-.btn-medium { background-color: #fff; color: #000; border: 1px solid #fff; }
-.btn-medium:hover { background-color: #e2e2e2; }
-.note { font-size: .86rem; color: #6e7681; margin: .7rem 0 0; }
-footer { margin-top: 3.4rem; padding-top: 1.4rem; border-top: 1px solid var(--border); text-align: center; font-size: .9rem; color: var(--muted); }
-footer a { color: var(--accent-color); text-decoration: none; }
-footer a:hover { color: var(--link-hover); }
-@media (max-width: 620px) { h1 { font-size: 1.6rem; } .hero { flex-direction: column; align-items: flex-start; } }
-</style>
-</head>
-<body>
-
-<div class="container">
-
-<header>
-  <h1>Nicola Pigozzo <span class="handle">· neo1777</span></h1>
-  <p class="bio">Costruisco <b>server MCP in Python</b> e l'infrastruttura che li tiene in piedi: un gateway self-hosted che li espone a client LLM con OAuth 2.1, CI con immagini firmate e rollback automatico. Vent'anni di sistemistica sotto, e la convinzione che una cosa dichiarata debba avere una prova che una macchina possa controllare.</p>
-  <div class="meta-line">
-    <a href="mailto:nicolainformatica@gmail.com">nicolainformatica@gmail.com</a> ·
-    <a href="https://github.com/neo1777">GitHub</a> ·
-    <a href="https://medium.com/@neo1777">Medium</a> ·
-    Provincia di Varese, full remote
-  </div>
-</header>
-
-<main>
-
-  <div class="hero">
-    <div>
-      <h2>Curriculum online</h2>
-      <p>Due profili, AI/Agentic e Sistemista. Ogni affermazione ha il link alla sua prova, si scarica in Markdown per gli ATS e la pagina dichiara da sé quando è vecchia.</p>
-    </div>
-    <a href="/cv/" class="btn btn-accent">Apri il CV</a>
-  </div>
-
-  <h2 class="section-title">Progetti e contributi</h2>
-  <p class="section-sub">In ordine di quanto sono verificabili da fuori, non di quanto mi piacciono.</p>
-  <div class="grid">
-
-    <div class="card wide">
-      <h3>Contributor di graphify <span style="color:var(--muted);font-weight:400;font-size:.9rem">— repository da <span id="gstars">oltre 120.000</span> stelle</span></h3>
-      <div class="tags"><span class="tag">Python</span><span class="tag">analisi di codebase</span><span class="tag">validato da terzi</span></div>
-      <p class="grow">Alla mia prima issue su GitHub ho documentato perché il loro clustering aggrega comunità incoerenti in presenza di nodi super-hub, con dati misurati sul grafo e la causa tracciata a due nodi specifici, e leggendo il sorgente ho trovato un bug di arrotondamento che impediva a una soglia di scattare. <b>Chiusa in tre ore</b>, e nella versione successiva sono arrivati il fix e due dei tre flag che avevo proposto. Su una seconda issue il maintainer ha risposto <i>«Great catch and a correct fix»</i> e ha implementato la correzione direttamente. <b>Due mesi dopo un altro utente ha aperto una issue citando la mia come origine del flag <code>--exclude-hubs</code></b>, scrivendo che funziona bene sul proprio grafo da 2.091 nodi: quello è il riscontro che conta, perché non viene da me.<br><br><b>Da fine settembre 2026 sono contributor:</b> due mie pull request (un fix a <code>--exclude-hubs</code> e uno al bonus «surprise» cross-repository) sono state incluse nella release v0.9.73, con me come autore dei commit.</p>
-      <div class="links">
-        <a href="https://github.com/Graphify-Labs/graphify/issues/919" class="btn btn-outline" target="_blank" rel="noopener">Issue #919</a>
-        <a href="https://github.com/Graphify-Labs/graphify/issues/934" class="btn btn-outline" target="_blank" rel="noopener">Issue #934</a>
-        <a href="https://github.com/Graphify-Labs/graphify/pull/942" class="btn btn-outline" target="_blank" rel="noopener">PR #942</a>
-        <a href="https://github.com/Graphify-Labs/graphify/issues/1800" class="btn btn-outline" target="_blank" rel="noopener">#1800, di un terzo</a>
-        <a href="https://github.com/Graphify-Labs/graphify/releases/tag/v0.9.73" class="btn btn-outline" target="_blank" rel="noopener">Release v0.9.73 (PR #3933, #3934)</a>
-      </div>
-    </div>
-
-    <div class="card wide">
-      <h3>vps1777 — gateway self-hosted per server MCP</h3>
-      <div class="tags"><span class="tag">Python</span><span class="tag">Docker</span><span class="tag">OAuth 2.1</span><span class="tag">in produzione</span><span class="tag">MIT</span></div>
-      <p class="grow">Espone i miei server MCP a client LLM dietro un unico URL HTTPS: gateway OAuth 2.1 con Dynamic Client Registration e PKCE, reverse proxy, architettura a plugin, installer grafico cross-OS in Python puro. CI su GHCR con immagini firmate cosign verificate fail-closed, SBOM, digest immutabili e rollback automatico su health-gate. Dietro girano due miei server MCP — retrieval ibrido (BM25 di SQLite FTS5 + vettori sqlite-vec, fusi con RRF) e uno che copre la superficie di NotebookLM con 38 tool — più un servizio OCR in container interno.<br><br>La parte di cui vado più fiero non è una funzione, è un vincolo: un <b>ledger delle feature</b> verificato in CI nei due sensi, e un <b>gate su <code>SECURITY.md</code></b> che fa fallire la build se un rilievo dichiarato chiuso perde la sua evidenza nel codice. Nasce da una mia dichiarazione di sicurezza invecchiata in silenzio.</p>
-      <div class="links">
-        <a href="https://github.com/neo1777/vps1777" class="btn btn-primary" target="_blank" rel="noopener">Codice</a>
-        <a href="https://github.com/neo1777/vps1777/blob/main/SECURITY.md" class="btn btn-outline" target="_blank" rel="noopener">SECURITY.md</a>
-        <a href="https://github.com/neo1777/vps1777/blob/main/docs/FEATURES-METODO.md" class="btn btn-outline" target="_blank" rel="noopener">Il metodo del ledger</a>
-      </div>
-      <p class="note">Zero stelle e zero fork: è un progetto personale in uso reale, non un prodotto in cerca di utenti. Vale solo se qualcuno apre il codice.</p>
-    </div>
-
-    <div class="card wide">
-      <h3>Samantha — assistente vocale AI in produzione al lavoro</h3>
-      <div class="tags"><span class="tag">n8n</span><span class="tag">voice AI</span><span class="tag">integrazione API</span><span class="tag">in produzione</span></div>
-      <p class="grow">Di mia iniziativa, nell'azienda in cui lavoro: Samantha risponde al numero dell'assistenza tecnica da aprile 2026. La voce è su yourang.ai; l'integrazione l'ho scritta io su n8n: riconosce il cliente per telefono o partita IVA dalle API interne, apre da sola il ticket sul gestionale aziendale e mette in coda da richiamare chi non è identificato. Oltre 1.800 chiamate ricevute, l'85% gestite interamente dall'AI (dati di settembre 2026).</p>
-      <p class="note">Codice e dati sono dell'azienda, quindi qui non c'è un link: è la parte del mio lavoro che si racconta, non si apre.</p>
-    </div>
-
-  </div>
-
-  <h2 class="section-title">App e strumenti</h2>
-  <p class="section-sub">Verificato il 10 settembre 2026 aprendo ogni indirizzo, non leggendo i metadati: uno è online, due sono codice da eseguire. La differenza è dichiarata perché conta.</p>
-  <div class="grid">
-
-    <div class="card">
-      <h3>marzio1777 <span style="color:#3fb950;font-size:.8rem;font-weight:400">● online</span></h3>
-      <div class="tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Firebase</span><span class="tag">PWA</span></div>
-      <p class="grow">Progressive Web App progettata e costruita da zero, con ruoli e permessi, funzioni server e un'architettura su circa 1.500 nodi. Una piazza digitale per una comunità di paese.</p>
-      <div class="links">
-        <a href="https://neo1777.github.io/marzio1777/" class="btn btn-primary">Apri</a>
-        <a href="https://github.com/neo1777/marzio1777" class="btn btn-outline" target="_blank" rel="noopener">Codice</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>acroform1777 <span style="color:var(--muted);font-size:.8rem;font-weight:400">○ da eseguire</span></h3>
-      <div class="tags"><span class="tag">TypeScript</span><span class="tag">Vite</span><span class="tag">PDF</span></div>
-      <p class="grow">Editor di moduli PDF AcroForm: gestione e manipolazione dei campi nel browser. Applicazione statica con guida utente e guida sviluppatore, da clonare ed eseguire: non è pubblicata come sito.</p>
-      <div class="links">
-        <a href="https://github.com/neo1777/acroform1777" class="btn btn-primary" target="_blank" rel="noopener">Codice e guide</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>mailmerge1777 <span style="color:var(--muted);font-size:.8rem;font-weight:400">○ da eseguire</span></h3>
-      <div class="tags"><span class="tag">TypeScript</span><span class="tag">Node</span><span class="tag">PDF</span></div>
-      <p class="grow">Stampa unione full-stack: compilazione di PDF da Excel e CSV e invio email massivo. Ha un componente server per l'invio, quindi si esegue in locale e non può essere una pagina statica.</p>
-      <div class="links">
-        <a href="https://github.com/neo1777/mailmerge1777" class="btn btn-primary" target="_blank" rel="noopener">Codice</a>
-      </div>
-    </div>
-
-  </div>
-
-  <h2 class="section-title">Scritti e didattica</h2>
-  <div class="grid">
-
-    <div class="card">
-      <h3>I spent $60 on Perplexity Pro…</h3>
-      <div class="tags"><span class="tag">Medium</span><span class="tag">workflow AI</span></div>
-      <p class="grow">The output would have cost me $15,000 from consultants. Una riflessione pratica sull'uso dell'AI avanzata nella ricerca, con il template che ho usato.</p>
-      <div class="links">
-        <a href="https://medium.com/@neo1777/i-spent-60-on-perplexity-pro-the-output-would-have-cost-me-15-000-from-consultants-d86f95dcd3c9" target="_blank" rel="noopener" class="btn btn-medium">Leggi su Medium</a>
-        <a href="https://gist.github.com/globalrecupero1/9dcf582931a2b57178c18945d9ffb91a" target="_blank" rel="noopener" class="btn btn-outline">Template gratuito</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>prototype_brutto</h3>
-      <div class="tags"><span class="tag">C++</span><span class="tag">didattica</span></div>
-      <p class="grow">Un dungeon crawler in un solo file, in tre versioni successive, per mostrare una lezione sola: non basta che funzioni. Materiale che si lega alla guida su Dart, Flutter e Flame a cui lavoro.</p>
-      <div class="links">
-        <a href="https://github.com/neo1777/prototype_brutto" class="btn btn-outline" target="_blank" rel="noopener">Codice</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Esperimenti su reti neurali</h3>
-      <div class="tags"><span class="tag">YouTube</span><span class="tag">pre-ChatGPT</span></div>
-      <p class="grow">Un canale con esperimenti su reti neurali di circa dieci anni fa, quando non era ancora un argomento da conversazione. Serve a dire da quanto tempo giro attorno a questa roba.</p>
-      <div class="links">
-        <a href="https://youtube.com/@neo1777" target="_blank" rel="noopener" class="btn btn-outline">Guarda</a>
-      </div>
-    </div>
-
-  </div>
-
-</main>
-
-<footer>
-  <p>Il codice completo, compresi i bot di trading in Dart del 2020-2023 da cui è cominciato tutto, è sul mio <a href="https://github.com/neo1777" target="_blank" rel="noopener">profilo GitHub</a>.</p>
-  <p>Nicola Pigozzo · <a href="mailto:nicolainformatica@gmail.com">nicolainformatica@gmail.com</a> · <a href="/cv/">CV</a></p>
-</footer>
-
-</div>
-
-<script>
-// Il conteggio stelle di graphify è l'unico numero di questa pagina che cambia da solo,
-// quindi si legge alla fonte. Se la rete non risponde resta il valore statico, che è
-// vero e arrotondato al ribasso: nessun buco e nessuna bugia.
-(function(){
-  var el = document.getElementById('gstars');
-  if (!el || typeof fetch !== 'function') return;
-  fetch('https://api.github.com/repos/Graphify-Labs/graphify', {headers:{'Accept':'application/vnd.github+json'}})
-    .then(function(r){ return r.ok ? r.json() : null; })
-    .then(function(j){
-      if (j && typeof j.stargazers_count === 'number') {
-        el.textContent = j.stargazers_count.toLocaleString('it-IT');
-        el.title = 'Letto da api.github.com al caricamento di questa pagina';
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0E1116" />
+    <meta name="description" content="neo1777: software, AI e strumenti MCP, infrastruttura self-hosted, automazioni, applicazioni e contributi open source." />
+    <meta name="author" content="neo1777" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://neo1777.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://neo1777.github.io/" />
+    <meta property="og:title" content="neo1777 — software, AI e infrastruttura" />
+    <meta property="og:description" content="Progetti open source, sistemi self-hosted, strumenti MCP, automazioni e report tecnici." />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:site_name" content="neo1777" />
+    <title>neo1777 — software, AI e infrastruttura</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Archivo:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: 'Archivo', system-ui, sans-serif;
+        color: #eae7df;
+        background: #0e1116;
+        --ink: #0e1116;
+        --surface: #141821;
+        --surface-raised: #1b212c;
+        --paper: #eae7df;
+        --paper-soft: #c9c6bd;
+        --slate: #98a1ae;
+        --slate-low: #6b7480;
+        --brass: #d6a24c;
+        --brass-hover: #e6b96a;
+        --line: rgba(234, 231, 223, 0.12);
+        --line-soft: rgba(234, 231, 223, 0.07);
+        --line-accent: rgba(214, 162, 76, 0.32);
+        --mono: 'JetBrains Mono', ui-monospace, monospace;
+        --display: 'Fraunces', Georgia, serif;
+        --content: 1120px;
       }
-    })
-    .catch(function(){});
-})();
-</script>
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+      body { min-width: 320px; margin: 0; background: var(--ink); color: var(--paper); line-height: 1.65; }
+      a { color: inherit; text-underline-offset: 4px; }
+      a:focus-visible { outline: 3px solid rgba(214, 162, 76, .55); outline-offset: 3px; }
+      .wrap { width: min(var(--content), calc(100% - 48px)); margin: 0 auto; }
+      .skip { position: absolute; top: 8px; left: 8px; z-index: 5; transform: translateY(-150%); padding: 9px 12px; border-radius: 6px; background: var(--brass); color: var(--ink); font-weight: 700; }
+      .skip:focus { transform: translateY(0); }
+      .masthead { position: sticky; z-index: 4; top: 0; border-bottom: 1px solid var(--line-soft); background: var(--ink); }
+      .nav { min-height: 70px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+      .wordmark { display: inline-flex; align-items: center; gap: 10px; color: var(--paper); text-decoration: none; font-family: var(--display); font-size: 1.2rem; }
+      .wordmark img { width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; object-fit: cover; }
+      .navlinks { display: flex; flex-wrap: wrap; gap: 4px; }
+      .navlinks a { padding: 9px 11px; border-radius: 6px; color: var(--slate); text-decoration: none; font-size: .86rem; transition: color 180ms ease, background 180ms ease; }
+      .navlinks a:hover { background: var(--surface); color: var(--paper); }
+      .hero { padding: 76px 0 68px; border-bottom: 1px solid var(--line-soft); }
+      .eyebrow, .kicker { color: var(--slate); font: 500 .68rem var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+      .eyebrow::before { display: inline-block; width: 22px; height: 1px; margin: 0 10px 3px 0; background: var(--brass); content: ''; }
+      h1, h2, h3 { text-wrap: balance; }
+      h1 { max-width: 900px; margin: 20px 0 20px; font: 400 clamp(2.55rem, 6vw, 5rem)/1.04 var(--display); letter-spacing: -.02em; }
+      h1 em { font-weight: 400; }
+      .lead { max-width: 760px; margin: 0; color: var(--slate); font-size: clamp(1.04rem, 1.6vw, 1.2rem); }
+      .actions, .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
+      .button { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: 9px 14px; border: 1px solid rgba(234,231,223,.2); border-radius: 6px; background: var(--surface); color: var(--paper); text-decoration: none; font-size: .88rem; font-weight: 600; transition: border-color 180ms ease, background 180ms ease; }
+      .button:hover { border-color: var(--line-accent); background: var(--surface-raised); }
+      .button.primary { border-color: var(--brass); background: var(--brass); color: #1a130a; }
+      .button.primary:hover { border-color: var(--brass-hover); background: var(--brass-hover); }
+      section { padding: 58px 0; border-bottom: 1px solid var(--line-soft); }
+      .section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 24px; }
+      h2 { margin: 8px 0 0; font: 400 clamp(1.7rem, 3vw, 2.4rem)/1.15 var(--display); }
+      .intro { max-width: 600px; margin: 10px 0 0; color: var(--slate); }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+      .card { min-width: 0; padding: 21px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); box-shadow: inset 0 1px 0 rgba(234,231,223,.045); }
+      .card.wide { grid-column: 1 / -1; }
+      .card h3 { margin: 0; font-size: 1.06rem; font-weight: 600; }
+      .card p { margin: 10px 0 0; color: var(--slate); font-size: .92rem; line-height: 1.72; }
+      .card p + p { margin-top: 13px; }
+      .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+      .tag, .status { display: inline-flex; align-items: center; min-height: 25px; padding: 4px 8px; border: 1px solid var(--line); border-radius: 6px; color: var(--slate); font: .68rem var(--mono); }
+      .status { border-color: var(--line-accent); color: var(--paper-soft); }
+      .note { margin-top: 14px !important; font-size: .82rem !important; }
+      .links { margin-top: 16px; }
+      .links .button { min-height: 36px; padding: 7px 10px; font-size: .8rem; }
+      .skills .card { min-height: 160px; }
+      .featured { border-color: var(--line-accent); }
+      .featured h3 { font: 400 1.65rem var(--display); }
+      .contribution { border-left: 2px solid var(--brass); }
+      footer { padding: 24px 0 38px; color: var(--slate); font-size: .85rem; }
+      footer p { margin: 8px 0; }
+      @media (max-width: 720px) {
+        .wrap { width: min(var(--content), calc(100% - 32px)); }
+        .nav { align-items: start; flex-direction: column; justify-content: center; padding: 14px 0; }
+        .navlinks { gap: 0; }
+        .navlinks a { padding: 7px 9px; font-size: .8rem; }
+        .hero { padding: 54px 0; }
+        section { padding: 44px 0; }
+        .section-head { align-items: start; flex-direction: column; }
+      }
+      @media (max-width: 540px) {
+        .grid { grid-template-columns: 1fr; }
+        .card.wide { grid-column: auto; }
+        .card { padding: 18px; }
+        h1 { font-size: 2.5rem; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#main">Vai al contenuto</a>
+    <div class="masthead">
+      <nav class="wrap nav" aria-label="Navigazione principale">
+        <a class="wordmark" href="/" aria-label="neo1777, portfolio">
+          <img src="/assets/images/avatar.jpeg" alt="" width="36" height="36" /><span>neo1777</span>
+        </a>
+        <div class="navlinks">
+          <a href="#competenze">Competenze</a>
+          <a href="#progetti">Progetti</a>
+          <a href="#open-source">Open source</a>
+          <a href="#scritti">Scritti</a>
+          <a href="https://neo1777.netlify.app/reports/">Report ↗</a>
+          <a href="/cv/">CV</a>
+        </div>
+      </nav>
+    </div>
 
-</body>
+    <header class="hero">
+      <div class="wrap">
+        <span class="eyebrow">Software · AI · sistemi</span>
+        <h1>Costruisco strumenti che collegano software e <em>sistemi reali.</em></h1>
+        <p class="lead">
+          Sono neo1777. Progetto strumenti AI e MCP, infrastruttura self-hosted,
+          automazioni e applicazioni. Questo sito è il portfolio completo e il
+          curriculum è disponibile a parte.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="https://neo1777.netlify.app/">Portfolio principale ↗</a>
+          <a class="button" href="/cv/">Apri il CV</a>
+          <a class="button" href="https://github.com/neo1777" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="wrap">
+      <section id="competenze" class="skills">
+        <div class="section-head">
+          <div><span class="kicker">Competenze documentate</span><h2>Dal prodotto all’infrastruttura</h2></div>
+          <p class="intro">Le aree qui raccolte sono supportate dai repository e dai materiali collegati in questa pagina.</p>
+        </div>
+        <div class="grid">
+          <article class="card"><h3>AI, agenti e MCP</h3><p>Server e client MCP, strumenti per agenti, NotebookLM, retrieval ibrido, OCR e integrazioni Telegram.</p></article>
+          <article class="card"><h3>Sistemi self-hosted</h3><p>Linux, Docker Compose, gateway, reverse proxy, OAuth 2.1, ingress HTTPS, segreti, backup e aggiornamenti.</p></article>
+          <article class="card"><h3>Applicazioni</h3><p>Python per servizi e automazione; TypeScript, React e Node per il web; Flutter e Dart per app mobile e desktop.</p></article>
+          <article class="card"><h3>Affidabilità e metodo</h3><p>CI, test automatizzati, immagini firmate e SBOM, release verificabili, rollback e documentazione controllata.</p></article>
+        </div>
+      </section>
+
+      <section id="progetti">
+        <div class="section-head">
+          <div><span class="kicker">Progetto principale</span><h2>vps1777</h2></div>
+          <span class="status">Pre-1.0 · in evoluzione</span>
+        </div>
+        <article class="card wide featured">
+          <h3>Gateway self-hosted per server MCP</h3>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Docker Compose</span><span class="tag">OAuth 2.1</span><span class="tag">MIT</span></div>
+          <p>
+            Riunisce server MCP e bot dietro un gateway con accesso OAuth 2.1,
+            reverse proxy, pannello amministrativo, Mini App Telegram e un
+            installer grafico per Windows, macOS e Linux. I backend sono
+            separati dal gateway su una rete Docker interna; i rilasci
+            prevedono firma, SBOM, digest verificati e rollback su health gate.
+          </p>
+          <p>
+            Tra i servizi collegabili ci sono un archivio con ricerca FTS5 e
+            modalità ibrida, strumenti MCP per NotebookLM e un servizio OCR.
+            Il repository documenta anche plugin, backup, ingress e modello
+            di sicurezza.
+          </p>
+          <div class="links">
+            <a class="button primary" href="https://neo1777.netlify.app/projects/vps1777/">Leggi il case study ↗</a>
+            <a class="button" href="https://github.com/neo1777/vps1777" target="_blank" rel="noopener">Codice e documentazione ↗</a>
+            <a class="button" href="https://github.com/neo1777/vps1777/blob/main/SECURITY.md" target="_blank" rel="noopener">Security notes ↗</a>
+            <a class="button" href="https://github.com/neo1777/vps1777/releases" target="_blank" rel="noopener">Release ↗</a>
+          </div>
+          <p class="note">Progetto dichiarato pre-1.0. Per stato, limitazioni, issue e note aggiornate fare riferimento al repository. Questa pagina non espone un’istanza pubblica collegata a servizi o dati personali.</p>
+        </article>
+
+        <article class="card wide contribution" style="margin-top: 16px">
+          <div class="section-head">
+            <div><span class="kicker">Contributo open source</span><h2>Graphify</h2></div>
+            <a class="button" href="https://github.com/Graphify-Labs/graphify/graphs/contributors" target="_blank" rel="noopener">Lista contributor ↗</a>
+          </div>
+          <p>
+            La mia prima issue pubblica sul progetto, <a href="https://github.com/Graphify-Labs/graphify/issues/919" target="_blank" rel="noopener">#919</a>,
+            analizzava come i super-hub potessero unire comunità di codice poco
+            coese e proponeva opzioni per controllare il clustering. Una
+            segnalazione successiva (<a href="https://github.com/Graphify-Labs/graphify/issues/934" target="_blank" rel="noopener">#934</a>)
+            ha isolato un errore del comando `cluster-only`; la prima proposta
+            di fix è <a href="https://github.com/Graphify-Labs/graphify/pull/942" target="_blank" rel="noopener">PR #942</a>.
+          </p>
+          <p>
+            Due contributi successivi, <a href="https://github.com/Graphify-Labs/graphify/pull/3933" target="_blank" rel="noopener">#3933</a> e
+            <a href="https://github.com/Graphify-Labs/graphify/pull/3934" target="_blank" rel="noopener">#3934</a>,
+            hanno portato fix per il clustering con `--exclude-hubs` e per il
+            bonus di sorpresa tra repository e directory. Le PR sono state
+            chiuse senza merge formale, ma i due commit sono presenti nel
+            repository upstream e nella release <a href="https://github.com/Graphify-Labs/graphify/releases/tag/v0.9.73" target="_blank" rel="noopener">v0.9.73</a>.
+            GitHub attribuisce due contributi al mio profilo.
+          </p>
+          <div class="links">
+            <a class="button" href="https://github.com/Graphify-Labs/graphify/commit/480115033da4148d6bedae4bed72ec7e8a34f8be" target="_blank" rel="noopener">Commit sul clustering ↗</a>
+            <a class="button" href="https://github.com/Graphify-Labs/graphify/commit/a20c272d46b8b280a2e80b7f105cdce3088cd885" target="_blank" rel="noopener">Commit sull’analisi ↗</a>
+          </div>
+        </article>
+
+        <article class="card wide" style="margin-top: 16px">
+          <h3>Integrazione vocale per supporto tecnico</h3>
+          <div class="tags"><span class="tag">Automazione</span><span class="tag">AI vocale</span><span class="tag">Integrazione API</span><span class="tag">Esperienza professionale</span></div>
+          <p>
+            Ho realizzato flussi di automazione e integrazione AI per gestire
+            richieste di supporto in un contesto professionale. La presentazione
+            è anonima: nomi, sistemi, metriche e codice dell’organizzazione non
+            sono pubblicati.
+          </p>
+        </article>
+
+        <h2 style="margin-top: 38px">Concept e applicazioni in corso</h2>
+        <p class="intro">Le schede distinguono ciò che è disponibile da ciò che è ancora un concept o richiede esecuzione locale.</p>
+        <div class="grid" style="margin-top: 20px">
+          <article class="card">
+            <h3>marzio1777</h3><div class="tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Firebase</span><span class="status">Prototipo · accesso richiesto</span></div>
+            <p>Esperimento di piazza digitale con ruoli, permessi e funzioni server. Il link alla demo può richiedere autenticazione; il progetto non è presentato qui come servizio aperto.</p>
+            <div class="links"><a class="button" href="https://github.com/neo1777/marzio1777" target="_blank" rel="noopener">Repository ↗</a><a class="button" href="https://neo1777.github.io/marzio1777/" target="_blank" rel="noopener">Demo ↗</a></div>
+          </article>
+          <article class="card">
+            <h3>acroform1777</h3><div class="tags"><span class="tag">TypeScript</span><span class="tag">Vite</span><span class="tag">PDF</span><span class="status">In sviluppo · demo non pubblica</span></div>
+            <p>Editor di moduli PDF AcroForm con strumenti di posizionamento e mappatura dei campi. Il codice e le guide sono nel repository; l’anteprima va eseguita localmente.</p>
+            <div class="links"><a class="button" href="https://github.com/neo1777/acroform1777" target="_blank" rel="noopener">Codice e guide ↗</a></div>
+          </article>
+          <article class="card">
+            <h3>mailmerge1777</h3><div class="tags"><span class="tag">TypeScript</span><span class="tag">Node</span><span class="tag">PDF</span><span class="status">In sviluppo · demo non pubblica</span></div>
+            <p>Strumento locale per generare PDF da dati CSV o Excel e collegare l’invio email. Il progetto richiede il componente server e non è una pagina statica.</p>
+            <div class="links"><a class="button" href="https://github.com/neo1777/mailmerge1777" target="_blank" rel="noopener">Repository ↗</a></div>
+          </article>
+          <article class="card">
+            <h3>todo1777 · bitcoin1777 · bot1777</h3><div class="tags"><span class="tag">Concept</span><span class="tag">Mockup</span><span class="tag">Mobile</span></div>
+            <p>Esplorazioni visuali per produttività, Bitcoin e automazione. Le immagini sono mockup, non schermate di app operative; il codice storico è distinto dai concept.</p>
+            <div class="links"><a class="button" href="https://neo1777.netlify.app/#in-sviluppo">Schede sul sito principale ↗</a><a class="button" href="https://github.com/neo1777/bot1777" target="_blank" rel="noopener">Repository legacy ↗</a></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="scritti">
+        <div class="section-head"><div><span class="kicker">Ricerca e divulgazione</span><h2>Scritti, report e didattica</h2></div></div>
+        <div class="grid">
+          <article class="card"><h3>Report tecnici</h3><p>Analisi strutturate su tecnologie web, AI e strumenti, con fonti, esempi, limiti e criteri d’uso.</p><div class="links"><a class="button primary" href="https://neo1777.netlify.app/reports/">Vai ai report ↗</a><a class="button" href="https://neo1777.netlify.app/reports/webmcp/">Report WebMCP ↗</a></div></article>
+          <article class="card"><h3>Workflow di ricerca AI</h3><p>Esperienza pratica nell’uso di strumenti AI per ricerca e sintesi, con un template condiviso.</p><div class="links"><a class="button" href="https://medium.com/@neo1777/i-spent-60-on-perplexity-pro-the-output-would-have-cost-me-15-000-from-consultants-d86f95dcd3c9" target="_blank" rel="noopener">Articolo su Medium ↗</a><a class="button" href="https://gist.github.com/globalrecupero1/9dcf582931a2b57178c18945d9ffb91a" target="_blank" rel="noopener">Template ↗</a></div></article>
+          <article class="card"><h3>prototype_brutto</h3><div class="tags"><span class="tag">C++</span><span class="tag">Didattica</span></div><p>Dungeon crawler in versioni progressive: un esercizio per discutere architettura e qualità oltre il solo “funziona”.</p><div class="links"><a class="button" href="https://github.com/neo1777/prototype_brutto" target="_blank" rel="noopener">Codice ↗</a></div></article>
+          <article class="card"><h3>Esperimenti su reti neurali</h3><div class="tags"><span class="tag">YouTube</span><span class="tag">Ricerca personale</span></div><p>Esperimenti e appunti di ricerca personale sulle reti neurali.</p><div class="links"><a class="button" href="https://youtube.com/@neo1777" target="_blank" rel="noopener">Canale ↗</a></div></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <p>Il portfolio principale, con articoli, report e schede di progetto, è su <a href="https://neo1777.netlify.app/">neo1777.netlify.app</a>.</p>
+      <p>Portfolio di <strong>neo1777</strong> · <a href="https://github.com/neo1777" target="_blank" rel="noopener">GitHub</a> · <a href="mailto:nicolainformatica@gmail.com">Contatti</a> · <a href="/cv/">Curriculum</a></p>
+    </footer>
+  </body>
 </html>
