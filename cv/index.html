@@ -69,7 +69,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
   /* Si stampa SOLO il profilo selezionato. Un PDF che contiene due profili diversi
      non e un CV: e un dossier, e chi lo riceve non sa per quale ruolo lo stai mandando. */
   .panel[hidden]{display:none!important}
-  [data-pdf-break-before="ops"]{break-before:page;page-break-before:always}
+  body[data-cv-profile="ops"] [data-pdf-break-before="ops"]{break-before:page;page-break-before:always}
   header{border-bottom:1.5pt solid #000;padding-bottom:9pt}
   h1{font-size:21pt;margin-bottom:2pt}
   .role{font-size:11pt;margin-bottom:6pt}
@@ -413,6 +413,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
   var attivo = 'ai';
   function show(k){
     attivo = k;
+    document.body.setAttribute('data-cv-profile', k);
     tabs.forEach(function(t){ t.setAttribute('aria-selected', String(t.dataset.p === k)); });
     ['ai','sys','ops'].forEach(function(p){ document.getElementById('p-' + p).hidden = (k !== p); });
     document.getElementById('roleline').textContent = roles[k];
