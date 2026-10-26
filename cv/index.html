@@ -118,12 +118,13 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
     <a href="https://github.com/neo1777">github.com/neo1777</a> ·
     <a href="https://neo1777.github.io">neo1777.github.io</a>
   </div>
-  <div class="stamp">Aggiornato il <b id="upd">10 settembre 2026</b> · disponibile full remote, immediato · ogni affermazione forte ha un link alla sua prova</div>
+  <div class="stamp">Aggiornato il <b id="upd">26 ottobre 2026</b> · disponibile full remote, immediato · ogni affermazione forte ha un link alla sua prova</div>
 </header>
 
 <div class="tabs noprint" role="tablist">
   <button class="tab" role="tab" aria-selected="true" data-p="ai">AI / Agentic Engineer</button>
   <button class="tab" role="tab" aria-selected="false" data-p="sys">Sistemista &amp; Infrastruttura</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="ops">Automazione &amp; IT Ops</button>
 </div>
 
 <!-- ================= AI ================= -->
@@ -212,6 +213,41 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
   </div>
 </section>
 
+<!-- ================= OPS ================= -->
+<section class="panel" id="p-ops" data-title="Automazione e IT Ops" hidden>
+  <h2>Profilo</h2>
+  <p class="lede">Oltre vent'anni di sistemistica, reti e assistenza tecnica, oggi applicati all'automazione dei processi con l'AI. Nel lavoro attuale ho messo in produzione, di mia iniziativa, un assistente vocale che risponde al numero dell'assistenza e apre i ticket da solo, integrato con le API interne tramite n8n. Il mio metodo: partire da un processo reale che fa perdere tempo, automatizzarlo con regole chiare su cosa decide la macchina e cosa resta a una persona, e misurare il risultato.</p>
+
+  <h2>Competenze</h2>
+  <dl class="grid">
+    <dt>Automazione di processi</dt><dd>n8n in produzione · integrazione con API REST interne e gestionali · riconoscimento del cliente e apertura automatica dei ticket · code di richiamata per i casi non certi · orchestrazione di workflow via CLI e script</dd>
+    <dt>AI applicata</dt><dd>Assistenti vocali e testuali con passaggio a una persona quando la risposta non è certa · API OpenAI e Anthropic · server MCP in Python · retrieval ibrido (full-text + vettori) misurato su un banco di prova fisso</dd>
+    <dt>Supporto tecnico e IT Ops</dt><dd>Assistenza da remoto di secondo livello su videosorveglianza IP, antintrusione e reti: diagnosi collegandosi ai sistemi del cliente · oltre 1.400 ticket risolti nel 2025 con soddisfazione del 99,8% · documentazione operativa che resta aggiornata</dd>
+    <dt>Infrastruttura</dt><dd>Linux, Windows Server e Active Directory · Docker e Compose · CI/CD su GitHub con aggiornamenti firmati e rollback automatico · backup cifrati · reti, firewall, VPN</dd>
+    <dt>Scripting e strumenti</dt><dd>Python per tooling e integrazioni · Bash · Git · installer cross-OS in Python puro · Dart/Flutter per applicazioni</dd>
+  </dl>
+
+  <h2>Progetti e contributi, con le prove</h2>
+
+  <div class="card">
+    <h3>Samantha — assistente vocale AI per l'assistenza tecnica, in produzione</h3>
+    <p><b>Il problema:</b> ogni chiamata al numero dell'assistenza andava identificata e trasformata in ticket da un operatore. <b>Cosa ho fatto:</b> di mia iniziativa ho messo in produzione un assistente vocale AI e ho scritto l'integrazione su n8n, che riconosce il cliente dal telefono o dalla partita IVA tramite le API interne e apre da sola il ticket sul gestionale. <b>La decisione:</b> l'AI non deve mai indovinare; se il cliente non è identificato con certezza, la richiesta finisce in una coda da richiamare e la gestisce una persona. <b>Il risultato:</b> da aprile 2026 oltre 1.800 chiamate, l'85% gestite interamente dall'AI.</p>
+    <p class="ev">Progetto interno all'azienda: nomi, sistemi e codice non sono pubblici. Scheda anonima: <a href="https://neo1777.netlify.app/">neo1777.netlify.app</a></p>
+  </div>
+
+  <div class="card">
+    <h3>vps1777 — gateway self-hosted, amministrato in produzione</h3>
+    <p>Gateway OAuth 2.1 che espone i miei servizi AI dietro un unico endpoint HTTPS: Docker Compose con backend su rete interna, aggiornamenti firmati e verificati, snapshot prima di ogni update e rollback automatico se il servizio non torna in salute. Lo uso ogni giorno come strumento di lavoro.</p>
+    <p class="ev">Prove: <a href="https://github.com/neo1777/vps1777">github.com/neo1777/vps1777</a></p>
+  </div>
+
+  <div class="card">
+    <h3>graphify — contributor di un repository da <span class="stars">oltre 120.000</span> stelle</h3>
+    <p>Ho documentato con misure un difetto di clustering e trovato la causa nel sorgente: issue chiusa in tre ore e due miei fix inclusi nella <b>release v0.9.73</b>, con me come autore dei commit.</p>
+    <p class="ev">Prove: <a href="https://github.com/Graphify-Labs/graphify/issues/919">#919</a> · <a href="https://github.com/Graphify-Labs/graphify/releases/tag/v0.9.73">release v0.9.73</a></p>
+  </div>
+</section>
+
 <!-- ================= comune ================= -->
 <section id="p-common">
   <h2>Esperienza professionale</h2>
@@ -234,15 +270,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
 
   <h2>Formazione e lingue</h2>
   <p style="font-size:14px;color:var(--mid);margin:0 0 8px">Diploma di Perito Tecnico, ITIS Varese, Elettronica e Telecomunicazioni, 2002. Formazione continua autodidatta: AI applicata e sistemi agentici, Flutter e Dart, Linux e sysadmin, containerizzazione. Sperimentazione costante tramite progetti personali e contributi open source.</p>
-  <p style="font-size:14px;color:var(--mid);margin:0">Italiano madrelingua.</p>
-
-  <h2>Quello che non ho</h2>
-  <div class="limits">
-    <p><b>Inglese scritto e parlato sotto il B2.</b> Leggo documentazione tecnica, specifiche e codebase senza difficoltà, e lavoro ogni giorno su materiale in inglese. La produzione scritta e orale è in miglioramento attivo, ed è il mio limite più serio.</p>
-    <p><b>Nessuna esperienza retribuita come sviluppatore e nessuna laurea.</b> Il mio portfolio è codice pubblico e un contributo accolto su un repository da oltre centomila stelle.</p>
-    <p><b>Nessun cloud pubblico con esperienza dimostrabile</b>, nessuna certificazione, nessun Kubernetes in produzione, nessun Terraform, nessun machine learning classico. Non uso LangChain, CrewAI o LangGraph: costruisco i componenti di orchestrazione invece di ereditarli. Non uso FastAPI: il gateway è scritto su Starlette e uvicorn con pydantic, cioè lo strato su cui FastAPI è costruito.</p>
-    <p style="color:var(--soft);font-size:13px">Questa sezione esiste perché emergerebbe comunque al primo colloquio tecnico. Dichiararla costa poco e rende verificabile tutto il resto.</p>
-  </div>
+  <p style="font-size:14px;color:var(--mid);margin:0">Italiano madrelingua. Inglese tecnico: leggo documentazione, specifiche e codice ogni giorno; scritto e parlato in miglioramento.</p>
 </section>
 
 <footer>
@@ -255,7 +283,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
 <script>
 (function(){
   "use strict";
-  var UPDATED = "2026-10-01";      // <<< unica data da cambiare quando aggiorni il CV
+  var UPDATED = "2026-10-26";      // <<< unica data da cambiare quando aggiorni il CV
   var SOGLIA_GIORNI = 60;          // oltre questa soglia la pagina dichiara di essere vecchia
   var TITOLO_BASE = document.title;
   var SEP = '§§';        // marcatore interno: sopravvive al collasso degli spazi
@@ -263,7 +291,8 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
   // Un solo posto decide come si chiamano i file, cosi il PDF e il .md dello stesso
   // profilo hanno lo stesso nome e due profili diversi non finiscono in "CV(2).pdf".
   function nomeFile(){
-    return 'CV_Nicola_Pigozzo_' + (attivo === 'ai' ? 'AI_Agentic' : 'Sistemista') + '_' + UPDATED;
+    var nomi = { ai: 'AI_Agentic', sys: 'Sistemista', ops: 'Automazione_ITOps' };
+    return 'CV_Nicola_Pigozzo_' + (nomi[attivo] || 'CV') + '_' + UPDATED;
   }
 
   // ---- tema: default scuro, scelta ricordata quando il browser lo permette ----
@@ -376,14 +405,14 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
   var tabs = [].slice.call(document.querySelectorAll('.tab'));
   var roles = {
     ai:  'AI / Agentic Engineer · Server MCP in Python, agenti LLM, sistemi RAG',
-    sys: 'Sistemista e Infrastruttura · Linux, Docker, CI/CD, sicurezza operativa'
+    sys: 'Sistemista e Infrastruttura · Linux, Docker, CI/CD, sicurezza operativa',
+    ops: 'Automazione e IT Ops · n8n, integrazioni API, assistenza tecnica, AI applicata'
   };
   var attivo = 'ai';
   function show(k){
     attivo = k;
     tabs.forEach(function(t){ t.setAttribute('aria-selected', String(t.dataset.p === k)); });
-    document.getElementById('p-ai').hidden  = (k !== 'ai');
-    document.getElementById('p-sys').hidden = (k !== 'sys');
+    ['ai','sys','ops'].forEach(function(p){ document.getElementById('p-' + p).hidden = (k !== p); });
     document.getElementById('roleline').textContent = roles[k];
   }
   tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.dataset.p); }); });
@@ -451,7 +480,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
     return out;
   }
   document.getElementById('bt-md').addEventListener('click', function(){
-    var sec = document.getElementById(attivo === 'ai' ? 'p-ai' : 'p-sys');
+    var sec = document.getElementById('p-' + attivo);
     var righe = [
       '# Nicola Pigozzo',
       '',
@@ -799,7 +828,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
 
     function genera(){
       pagine = []; h2Sospeso = null; nuovaPagina();
-      var sec = document.getElementById(attivo === 'ai' ? 'p-ai' : 'p-sys');
+      var sec = document.getElementById('p-' + attivo);
       intestazione();
       sezione(sec);
       sezione(document.getElementById('p-common'));
