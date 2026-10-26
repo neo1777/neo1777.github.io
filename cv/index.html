@@ -69,6 +69,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
   /* Si stampa SOLO il profilo selezionato. Un PDF che contiene due profili diversi
      non e un CV: e un dossier, e chi lo riceve non sa per quale ruolo lo stai mandando. */
   .panel[hidden]{display:none!important}
+  [data-pdf-break-before="ops"]{break-before:page;page-break-before:always}
   header{border-bottom:1.5pt solid #000;padding-bottom:9pt}
   h1{font-size:21pt;margin-bottom:2pt}
   .role{font-size:11pt;margin-bottom:6pt}
@@ -250,7 +251,8 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
 
 <!-- ================= comune ================= -->
 <section id="p-common">
-  <h2>Esperienza professionale</h2>
+  <!-- In Automazione & IT Ops i progetti chiudono la prima pagina; la cronologia apre la seconda. -->
+  <h2 data-pdf-break-before="ops">Esperienza professionale</h2>
   <div class="job"><div class="job-h"><div class="job-t">Addetto Assistenza Tecnica e Help Desk — S&amp;A S.r.l. (Gallarate, VA)</div><div class="job-d">Ott 2024 – oggi</div></div>
   <p>Assistenza tecnica da remoto su videosorveglianza IP, antintrusione e sicurezza integrata, a supporto di installatori, rivenditori e clienti finali: diagnosi collegandomi ai sistemi del cliente, configurazione, verifica di rete. Oltre 1.400 ticket risolti con soddisfazione clienti del 99,8% nel 2025. Inquadramento 3° livello CCNL Commercio e Terziario da gennaio 2026. Di mia iniziativa ho messo in produzione <strong>Samantha</strong>, l'assistente vocale AI che risponde al numero dell'assistenza (da aprile 2026): voce su yourang.ai, integrazione mia su <strong>n8n</strong> che riconosce il cliente per telefono o P.IVA dalle API interne e apre da sola il ticket sul gestionale aziendale, oppure mette in coda da richiamare chi non è identificato. Oltre 1.800 chiamate ricevute, l'85% gestite interamente dall'AI (settembre 2026).</p></div>
 
@@ -760,6 +762,7 @@ footer{margin-top:38px;padding-top:15px;border-top:1px solid var(--line);font-si
       var kids = sec.children;
       for (var i=0;i<kids.length;i++){
         var el = kids[i], tag = el.tagName;
+        if (el.getAttribute('data-pdf-break-before') === attivo && y < PH - MT - 18) nuovaPagina();
         if (tag === 'H2') h2(el);
         else if (tag === 'P' && el.classList.contains('lede')) para(el, 9, 12.2);
         else if (tag === 'DL') griglia(el);
